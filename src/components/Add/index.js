@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-class Form extends Component {
+class Add extends Component {
   static propTypes = {
     addTodo: PropTypes.func.isRequired,
     failure: PropTypes.func.isRequired,
@@ -10,18 +10,20 @@ class Form extends Component {
   }
 
   handleSubmit = (e) => {
-    e.preventDefault();  
+    e.preventDefault();
     const data = this._input.value.trim();
+    const nullify = () => {
+      this._input.value = '';
+      this._input.focus();
+    };
 
     if (data && data.length > 0) {
       this.props.addTodo(data);
-      this._input.value = '';
-      this._input.focus();
+      nullify();
     }
     if (!data || data.length < 0) {
       this.props.failure('empty');
-      this._input.value = '';
-      this._input.focus();
+      nullify();
     }
   };
 
@@ -37,9 +39,8 @@ class Form extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
   todo: state.todo
 });
 
-export default connect(mapStateToProps, actions)(Form);
+export default connect(mapStateToProps, actions)(Add);

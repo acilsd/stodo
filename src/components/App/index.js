@@ -1,13 +1,15 @@
 import React from 'react';
 import List from '../List';
-import Form from '../Form';
+import Add from '../Add';
+import Search from '../Search';
+
 
 const App = () => {
   return (
     <div>
-      <h1>Todos</h1>
+      <Search />
       <List />
-      <Form />
+      <Add />
     </div>
   );
 };
