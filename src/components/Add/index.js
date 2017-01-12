@@ -28,6 +28,7 @@ class Add extends Component {
   };
 
   render() {
+    console.log(this.props.todo);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -40,7 +41,7 @@ class Add extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo
+  todo: state.todo.todos
 });
 
 export default connect(mapStateToProps, actions)(Add);

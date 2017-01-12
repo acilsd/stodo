@@ -17,7 +17,7 @@ const List = ({ todo }) =>  {
 };
 
 const mapStateToProps = state => ({
-  todo: state.todo
+  todo: state.todo.todos
 });
 
 

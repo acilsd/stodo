@@ -1,11 +1,10 @@
 import * as types from '../constants/';
-//FILTER_TODO
+
 export const addTodo = (data) => {
   const obj = {
     id: Math.random().toString(36).substr(2, 9),
     text: data
   };
-
   return {
     type: types.ADD_TODO,
     payload: obj
@@ -14,8 +13,14 @@ export const addTodo = (data) => {
 
 export const searchTodo = (data) => {
   return {
-    type: types.FILTER_TODO,
+    type: types.SEARCH_TODO,
     payload: data
+  };
+};
+
+export const filterDone = () => {
+  return {
+    type: types.FILTER_TODO,
   };
 };
 
