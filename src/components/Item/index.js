@@ -1,11 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
 
-const Item = ({ text }) => {
+const Item = ({ text, id, completed, handler }) => {
+  const handleClick = (obj) => {
+    let status = !obj.completed;
+    handler(obj.id, status);
+  };
+
   return (
     <div>
-      {text}
+      <p>{text}</p>
+      <b>{completed ? 'ye' : 'no'}</b>
+      <button onClick={handleClick.bind(null, {id, completed})}>Complete</button>
     </div>
   );
 };

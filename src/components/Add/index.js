@@ -28,7 +28,6 @@ class Add extends Component {
   };
 
   render() {
-    console.log(this.props.todo);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

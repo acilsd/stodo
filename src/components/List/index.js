@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import Item from '../Item';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
-const List = ({ todo }) =>  {
-  return (
-      <div>
-        <h1>List</h1>
-        {
-          todo.map((item) => {
-            return <Item key={item.id} text={item.text}/>;
-          })
-        }
-      </div>
-  );
-};
+class List extends Component {
+  render() {
+    const { todo, completeTodo } = this.props;
+    return (
+        <div>
+          <h1>List</h1>
+          {
+            todo.map((item) => {
+              return (
+                <Item
+                  key={item.id}
+                  id={item.id}
+                  text={item.text}
+                  completed={item.completed}
+                  handler={completeTodo}
+                />
+              );
+            })
+          }
+        </div>
+    );
+  }
+}
 
 const mapStateToProps = state => ({
   todo: state.todo.todos

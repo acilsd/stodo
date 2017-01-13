@@ -3,7 +3,8 @@ import * as types from '../constants/';
 export const addTodo = (data) => {
   const obj = {
     id: Math.random().toString(36).substr(2, 9),
-    text: data
+    text: data,
+    completed: false
   };
   return {
     type: types.ADD_TODO,
@@ -21,6 +22,17 @@ export const searchTodo = (data) => {
 export const filterDone = () => {
   return {
     type: types.FILTER_TODO,
+  };
+};
+
+export const completeTodo = (id, status) => {
+  const obj = {
+    id: id,
+    completed: status
+  };
+  return {
+    type: types.COMPLETE_TODO,
+    payload: obj    
   };
 };
 
