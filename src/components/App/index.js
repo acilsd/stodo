@@ -3,7 +3,6 @@ import List from '../List';
 import Add from '../Add';
 import Search from '../Search';
 
-
 const App = () => {
   return (
     <div>

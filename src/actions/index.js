@@ -19,9 +19,10 @@ export const searchTodo = (data) => {
   };
 };
 
-export const filterDone = () => {
+export const filterDone = (status) => {
   return {
     type: types.FILTER_TODO,
+    payload: status
   };
 };
 
@@ -32,7 +33,7 @@ export const completeTodo = (id, status) => {
   };
   return {
     type: types.COMPLETE_TODO,
-    payload: obj    
+    payload: obj
   };
 };
 

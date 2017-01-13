@@ -4,13 +4,29 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions';
 
 class List extends Component {
+  static propTypes = {
+    todo: PropTypes.array.isRequired,
+    done: PropTypes.array.isRequired,
+    filtered: PropTypes.bool.isRequired,
+    completeTodo: PropTypes.func.isRequired,
+    search: PropTypes.string,
+  }
+
+  makeRealContent = () => {
+    const { todo, done, filtered, search } = this.props;
+    const todobox = filtered ? done : todo;
+    return todobox.filter((item) => {
+      return item.text.toLowerCase().indexOf(search) > -1;
+    });
+  }
+
   render() {
-    const { todo, completeTodo } = this.props;
+    const { completeTodo } = this.props;
     return (
         <div>
-          <h1>List</h1>
+          <h1>Todos</h1>
           {
-            todo.map((item) => {
+            this.makeRealContent().map((item) => {
               return (
                 <Item
                   key={item.id}
@@ -28,7 +44,10 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo.todos
+  todo: state.todo.todos,
+  done: state.todo.done,
+  filtered: state.todo.filtered,
+  search: state.todo.search,
 });
 
 

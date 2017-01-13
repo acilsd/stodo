@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   filtered: false,
+  search: '',
   todos: [
     {
       id: 'asfawf',
@@ -19,7 +20,8 @@ const initialState = {
       text: 'Kudasai',
       completed: true
     },
-  ]
+  ],
+  done: []
 };
 
 export default function todoReducer(state = initialState, action) {
@@ -27,13 +29,13 @@ export default function todoReducer(state = initialState, action) {
   case ADD_TODO:
     return {...state, todos: [...state.todos, action.payload]};
   case FILTER_TODO:
-    return state;
+    return {...state, filtered: action.payload, done: toggleDone(state.todos)};
   case SEARCH_TODO:
-    return state;
-  case DELETE_TODO:
-    return state;
+    return {...state, search: action.payload};
   case COMPLETE_TODO:
     return {...state, todos: toggle(state.todos, action.payload)};
+  case DELETE_TODO:
+    return state;
   default:
     return state;
   }
@@ -47,5 +49,10 @@ const toggle = (state, data) => {
     }
     return item;
   });
+  return newState;
+};
+
+const toggleDone = (state) => {
+  const newState = state.filter((item) => item.completed === true);
   return newState;
 };

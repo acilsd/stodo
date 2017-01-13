@@ -10,13 +10,19 @@ class Search extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const searchTest = this._text.value.trim().toLowerCase();
-    this.props.searchTodo(searchTest);
+    const searchText = this._text.value.trim().toLowerCase();
+    this.props.searchTodo(searchText);
   };
 
   handleCheck = (e) => {
     const checked = this._check.checked;
-    this.props.filterDone();
+    this.props.filterDone(checked);
+  }
+
+  reset = (e) => {
+    this._text.value = '';
+    this._text.focus();
+    this.props.searchTodo('');
   }
 
   render() {
@@ -30,13 +36,15 @@ class Search extends Component {
             ref={c => this._check = c}
           />
         </form>
+        <button onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.reset}>Reset</button>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-
+  filtered: state.todo.filtered
 });
 
 export default connect(mapStateToProps, actions)(Search);
