@@ -12,19 +12,9 @@ export const addTodo = (data) => {
   };
 };
 
-export const searchTodo = (data) => {
-  return {
-    type: types.SEARCH_TODO,
-    payload: data
-  };
-};
+export const searchTodo = (data) => ({type: types.SEARCH_TODO, payload: data});
 
-export const filterDone = (status) => {
-  return {
-    type: types.FILTER_TODO,
-    payload: status
-  };
-};
+export const filterDone = (status) => ({type: types.FILTER_TODO, payload: status});
 
 export const completeTodo = (id, status) => {
   const obj = {
@@ -37,8 +27,6 @@ export const completeTodo = (id, status) => {
   };
 };
 
-export const failure = (fail) => {
-  return {
-    type: types.FAIL
-  };
-};
+export const deleteTodo = (id) => ({type: types.DELETE_TODO, payload: id});
+
+export const failure = (fail) => ({ type: types.FAIL });
