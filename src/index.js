@@ -16,3 +16,21 @@ render(
   </Provider>,
   container
 );
+
+
+/*
+gray
+#E6E8E6
+
+pink
+#CA47D1;
+rgba(202, 71, 209, 0.3);
+
+green
+#24D13B
+rgba(36, 209, 59, 0.3);
+
+red
+#E36464
+rgba(227, 100, 100, 0.3);
+*/

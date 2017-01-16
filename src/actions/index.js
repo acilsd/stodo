@@ -1,31 +1,13 @@
 import * as types from '../constants/';
+import { generateId } from '../utils';
 
-export const addTodo = (data) => {
-  const obj = {
-    id: Math.random().toString(36).substr(2, 9),
-    text: data,
-    completed: false
-  };
-  return {
-    type: types.ADD_TODO,
-    payload: obj
-  };
-};
+export const addTodo = (data) => ({ type: types.ADD_TODO, payload: {id: generateId(), text: data, completed: false} });
 
-export const searchTodo = (data) => ({type: types.SEARCH_TODO, payload: data});
+export const searchTodo = (data) => ({ type: types.SEARCH_TODO, payload: data });
 
-export const filterDone = (status) => ({type: types.FILTER_TODO, payload: status});
+export const filterDone = (status) => ({ type: types.FILTER_TODO, payload: status });
 
-export const completeTodo = (id, status) => {
-  const obj = {
-    id: id,
-    completed: status
-  };
-  return {
-    type: types.COMPLETE_TODO,
-    payload: obj
-  };
-};
+export const completeTodo = (id, status) => ({ type: types.COMPLETE_TODO, payload: {id, completed: status} });
 
 export const deleteTodo = (id) => ({type: types.DELETE_TODO, payload: id});
 

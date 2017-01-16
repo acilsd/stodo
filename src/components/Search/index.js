@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import styles from './style.scss';
 
 class Search extends Component {
   static propTypes = {
@@ -26,18 +27,28 @@ class Search extends Component {
   }
 
   render() {
+    let text = this.props.filtered ? 'all' : 'done';
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' ref={c => this._text = c} />
+      <div class='top'>
+        <form onSubmit={this.handleSubmit} class='search-form'>
+          <input
+            type='text'
+            ref={c => this._text = c}
+            placeholder='search...'
+            class='search-form__input'/>
           <input
             onChange={this.handleCheck}
             type='checkbox'
             ref={c => this._check = c}
+            class='search-form__check'
+            id='check'
           />
+          <label for='check' class='search-form__label'>
+            Toggle {`${text}`}
+          </label>
+          <button onClick={this.handleSubmit} class='btn'>Submit</button>
+          <button onClick={this.reset} class='btn btn--red'>Reset</button>
         </form>
-        <button onClick={this.handleSubmit}>Submit</button>
-        <button onClick={this.reset}>Reset</button>
       </div>
     );
   }
