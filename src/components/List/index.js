@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Item from '../Item';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import styles from './style.scss';
 
 class List extends Component {
   static propTypes = {
@@ -24,8 +25,9 @@ class List extends Component {
   render() {
     const { completeTodo, deleteTodo } = this.props;
     return (
-        <div>
-          <h1>Todos</h1>
+        <div class='todo-list'>
+          <h1>What have to be done</h1>
+          <p class='user'>User</p>
           {
             this.makeRealContent().map((item) => {
               return (

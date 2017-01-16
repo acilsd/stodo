@@ -9,7 +9,23 @@ import {
 const initialState = {
   filtered: false,
   search: '',
-  todos: []
+  todos: [
+    {
+      id: 'afawg',
+      text: 'sasai',
+      completed: false
+    },
+    {
+      id: 'ahgjjhju',
+      text: 'sasai',
+      completed: false
+    },
+    {
+      id: 'afaegagawg',
+      text: 'sasai',
+      completed: false
+    }
+  ]
 };
 
 export default function todoReducer(state = initialState, action) {
