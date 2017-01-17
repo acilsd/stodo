@@ -13,16 +13,22 @@ const initialState = {
     {
       id: 'afawg',
       text: 'sasai',
+      time: '12.12.1999',
+      note: 'kudasai',
       completed: false
     },
     {
       id: 'ahgjjhju',
       text: 'sasai',
+      time: '12.12.1999',
+      note: 'kudasai',
       completed: false
     },
     {
       id: 'afaegagawg',
       text: 'sasai',
+      time: '12.12.1999',
+      note: 'kudasai',
       completed: false
     }
   ]

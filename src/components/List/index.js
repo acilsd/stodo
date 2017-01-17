@@ -35,6 +35,8 @@ class List extends Component {
                   key={item.id}
                   id={item.id}
                   text={item.text}
+                  time={item.time}
+                  note={item.note}
                   completed={item.completed}
                   toggler={completeTodo}
                   deleter={deleteTodo}

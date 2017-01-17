@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from '../Links';
 import * as actions from '../../actions';
 import styles from './style.scss';
 
@@ -49,6 +50,7 @@ class Search extends Component {
           <button onClick={this.handleSubmit} class='btn'>Submit</button>
           <button onClick={this.reset} class='btn btn--red'>Reset</button>
         </form>
+        <NavLink class='btn btn--new' to='/add'>New task</NavLink>
       </div>
     );
   }
