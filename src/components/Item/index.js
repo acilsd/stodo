@@ -2,25 +2,33 @@ import React from 'react';
 import styles from './style.scss';
 
 const Item = ({ text, id, completed, toggler, deleter }) => {
-  const handleToggle = (obj) => {
-    let status = !obj.completed;
-    toggler(obj.id, status);
+
+  const handleToggle = () => {
+    const status = !completed;
+    toggler(id, status);
   };
-  const handleDelete = (id) => {
+
+  const handleDelete = () => {
     deleter(id);
   };
+
+  const handleEdit = () => {
+
+  };
+
   return (
     <div class='todo'>
+      <h2 class='todo__title'>Task description</h2>
       <p class='todo__text'>{text}</p>
       <div class='todo__description'>
-        <span class='todo__status'>{completed ? 'done' : 'not yet'}</span>
-        <span class='todo__note'>ASAP</span>
-        <span class='todo__time'>21.12.1222</span>
+        <span class='todo__item'><span>Current status:</span><b>{completed ? 'Done' : 'In process'}</b></span>
+        <span class='todo__item'><span>Time limit:</span><b>21.12.1222</b></span>
+        <span class='todo__item'><span>Special note:</span><b>adfawflawhflkawhf awljkfgawlkfgaASAP</b></span>
       </div>
       <div class='todo__actions'>
-        <button class='btn-td'onClick={handleToggle.bind(null, {id, completed})}>Complete?</button>
-        <button class='btn-td'>Edit :3</button>
-        <button class='btn-td btn--red'onClick={handleDelete.bind(null, id)}>Delete!</button>
+        <button class='btn-td btn--pink' onClick={handleToggle}>{completed ? 'Uncomplete' : 'Complete?'}</button>
+        <button class='btn-td' onClick={handleEdit}>Edit :3</button>
+        <button class='btn-td btn--red' onClick={handleDelete}>Delete!</button>
       </div>
     </div>
   );
