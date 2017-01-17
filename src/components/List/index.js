@@ -23,7 +23,7 @@ class List extends Component {
   }
 
   render() {
-    const { completeTodo, deleteTodo } = this.props;
+    const { completeTodo, deleteTodo, } = this.props;
     return (
         <div class='todo-list'>
           <h1>What have to be done</h1>
@@ -52,7 +52,7 @@ class List extends Component {
 const mapStateToProps = state => ({
   todo: state.todo.todos,
   filtered: state.todo.filtered,
-  search: state.todo.search,
+  search: state.todo.search
 });
 
 

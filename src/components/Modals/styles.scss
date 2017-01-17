@@ -1,0 +1,14 @@
+.modal {
+  position: absolute;
+  width: 400px;
+  height: 190px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 1000;
+  background-color: #E6E8E6;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
