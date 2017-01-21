@@ -12,6 +12,7 @@ const initialState = {
   todos: [
     {
       id: 'afawg',
+      name: 'test',
       text: 'sasai',
       time: '12.12.1999',
       note: 'kudasai',
@@ -19,14 +20,16 @@ const initialState = {
     },
     {
       id: 'ahgjjhju',
-      text: 'sasai',
+      name: 'test2',
+      text: 'sasai2',
       time: '12.12.1999',
       note: 'kudasai',
       completed: false
     },
     {
       id: 'afaegagawg',
-      text: 'sasai',
+      name: 'test3',
+      text: 'sasai3',
       time: '12.12.1999',
       note: 'kudasai',
       completed: false

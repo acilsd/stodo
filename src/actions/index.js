@@ -1,7 +1,20 @@
 import * as types from '../constants/';
 import { generateId } from '../utils';
 
-export const addTodo = (data) => ({ type: types.ADD_TODO, payload: {id: generateId(), text: data, completed: false} });
+export const addTodo = (data) => {
+  const newTask = {
+    id: generateId(),
+    name: data.name,
+    text: data.text,
+    time: data.time,
+    note: data.note,
+    completed: false
+  };
+  return {
+    type: types.ADD_TODO,
+    payload: newTask
+  };
+};
 
 export const searchTodo = (data) => ({ type: types.SEARCH_TODO, payload: data });
 

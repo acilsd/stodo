@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
+import styles from './style.scss';
 
 class Add extends Component {
   static propTypes = {
@@ -15,26 +16,38 @@ class Add extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const data = this._input.value.trim();
 
-    if (data && data.length > 0) {
+    const data = {
+      name: this.name.value.trim(),
+      text: this.text.value.trim(),
+      time: this.time.value.trim(),
+      note: this.note.value.trim(),
+    };
+
+    if (this.checkValidity(data)) {
       this.props.addTodo(data);
-      this.context.router.push(`/`);
-    }
-    if (!data || data.length < 0) {
-      this.props.failure('empty');
       this.context.router.push(`/`);
     }
   };
 
+  checkValidity = (obj) => {
+    if (!obj.name || obj.name.length === 0) return false;
+    if (!obj.text || obj.text.length === 0) return false;
+
+    return true;
+  }
+
   render() {
     return (
       <div class='main'>
-        <form onSubmit={this.handleSubmit}>
-          <input type='text' ref={c => this._input = c} placeholder='enter your task text...'/>
-          <input type='text' placeholder='time limit'/>
-          <input type='text' placeholder='any special notes?'/>
-          <button type='submit'>Submit</button>
+        <form onSubmit={this.handleSubmit} class='modal-form'>
+          <div class='inputs'>
+            <input class='modal-input' type='text' ref={c => this.name = c} placeholder='task name'/>
+            <input class='modal-input' type='text' ref={c => this.time = c} placeholder='time limit'/>
+            <input class='modal-input' type='text' ref={c => this.note = c} placeholder='special notes'/>
+          </div>
+          <textarea class='modal-text' ref={c => this.text = c} placeholder='enter your task text here'></textarea>
+          <button class='btn' type='submit'>Submit</button>
         </form>
       </div>
     );
