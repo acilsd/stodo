@@ -37,6 +37,11 @@ class Add extends Component {
     return true;
   }
 
+  revert = (e) => {
+    e.preventDefault();
+    this.context.router.push(`/`);
+  }
+
   render() {
     return (
       <div class='main'>
@@ -48,6 +53,7 @@ class Add extends Component {
           </div>
           <textarea class='modal-text' ref={c => this.text = c} placeholder='enter your task text here'></textarea>
           <button class='btn' type='submit'>Submit</button>
+          <button class='btn btn--red' onClick={this.revert}>Cancel</button>
         </form>
       </div>
     );

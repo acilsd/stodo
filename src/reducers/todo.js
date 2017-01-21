@@ -3,7 +3,8 @@ import {
   FILTER_TODO,
   SEARCH_TODO,
   DELETE_TODO,
-  COMPLETE_TODO
+  COMPLETE_TODO,
+  EDIT_TODO
 } from '../constants/';
 
 const initialState = {
@@ -49,6 +50,8 @@ export default function todoReducer(state = initialState, action) {
     return {...state, todos: toggle(state.todos, action.payload)};
   case DELETE_TODO:
     return {...state, todos: deleteFromState(state.todos, action.payload)};
+  case EDIT_TODO:
+    return {...state, todos: editTodo(state.todos, action.payload)};
   default:
     return state;
   }
@@ -68,6 +71,14 @@ const toggle = (state, data) => {
 const deleteFromState = (state, id) => {
   const newState = state.filter((item) => {
     return item.id !== id;
+  });
+  return newState;
+};
+
+const editTodo = (state, obj) => {
+  const newState = state.map((item) => {
+    if (item.id === obj.id) item = obj;
+    return item;
   });
   return newState;
 };

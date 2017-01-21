@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Item from '../Item';
-import ModalDelete from '../Modals';
+import ModalDelete from '../ModalDelete';
+import ModalEdit from '../ModalEdit';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import styles from './style.scss';
@@ -24,11 +25,19 @@ class List extends Component {
   }
 
   render() {
-    const { completeTodo, modalDelete } = this.props;
+    const { completeTodo, modalDelete, modalEdit, filtered } = this.props;
     return (
         <div class='todo-list'>
-          <h1>What have to be done</h1>
-          <p class='user'>User</p>
+          <h1>Greetings, User</h1>
+          <p class='user'>Here is your current tasklist</p>
+
+          {
+            filtered
+            ?
+              <p class='user'>Currently displaying completed tasks only</p>
+            : null
+          }
+
           {
             this.makeRealContent().map((item) => {
               return (
@@ -42,11 +51,14 @@ class List extends Component {
                   completed={item.completed}
                   toggler={completeTodo}
                   deleter={modalDelete}
+                  editor={modalEdit}
                 />
               );
             })
           }
+          
           <ModalDelete />
+          <ModalEdit />
         </div>
     );
   }

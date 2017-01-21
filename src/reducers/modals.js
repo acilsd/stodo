@@ -8,11 +8,11 @@ const initialState = {
   editing: false,
   deleting: false,
   tempTodo: {
+    completed: '',
     id: '',
     text: '',
     time: '',
     note: '',
-    completed: false
   }
 };
 
@@ -21,7 +21,7 @@ export default function modals(state = initialState, action) {
   case SHOW_MODAL_DELETE:
     return {...state, deleting: true, editing: false, tempTodo: action.payload };
   case SHOW_MODAL_EDIT:
-    return {...state, deleting: false, editing: true};
+    return {...state, deleting: false, editing: true, tempTodo: action.payload };
   case HIDE_MODALS:
     return {...state, deleting: false, editing: false};
   default:

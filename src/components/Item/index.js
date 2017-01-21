@@ -5,6 +5,7 @@ export default class Item extends PureComponent  {
   static propTypes = {
     toggler: PropTypes.func.isRequired,
     deleter: PropTypes.func.isRequired,
+    editor: PropTypes.func.isRequired,
     text: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
@@ -24,7 +25,15 @@ export default class Item extends PureComponent  {
   };
 
   toggleEdit = () => {
-
+    const box = {
+      completed: this.props.completed,
+      id: this.props.id,
+      name: this.props.name,
+      text: this.props.text,
+      note: this.props.note,
+      time: this.props.time
+    };
+    this.props.editor(box);
   };
 
   render() {

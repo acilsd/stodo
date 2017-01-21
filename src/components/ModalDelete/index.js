@@ -5,6 +5,13 @@ import styles from './styles.scss';
 
 class ModalDelete extends Component {
 
+  static propTypes = {
+    tempTodo: PropTypes.object.isRequired,
+    deleting: PropTypes.bool.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
+    hideAllModals: PropTypes.func.isRequired,
+  }
+
   handleDelete = () => {
     this.props.deleteTodo(this.props.tempTodo.id);
     this.props.hideAllModals();

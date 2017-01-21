@@ -24,7 +24,11 @@ export const completeTodo = (id, status) => ({ type: types.COMPLETE_TODO, payloa
 
 export const deleteTodo = (id) => ({ type: types.DELETE_TODO, payload: id });
 
+export const editTodo = (obj) => ({ type: types.EDIT_TODO, payload: obj });
+
 export const modalDelete = (obj) => ({ type: types.SHOW_MODAL_DELETE, payload: obj });
+
+export const modalEdit = (obj) => ({ type: types.SHOW_MODAL_EDIT, payload: obj });
 
 export const hideAllModals = () => ({ type: types.HIDE_MODALS });
 

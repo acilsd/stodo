@@ -1,0 +1,79 @@
+.modal-edit {
+  position: fixed;
+  max-width: 960px;
+  min-width: 480px;
+  min-height: 190px;
+  left: 0;
+  right: 0;
+  top: 40%;
+  margin: auto;
+  z-index: 1000;
+  background-color: #E6E8E6;
+  border: 2px solid #AAADAD;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  @media only screen and (max-width: 625px) {
+    top: 30%;
+  }
+  .btn--pink {
+    background-color: rgba(202, 71, 209, 0.3);
+    &:hover {
+      cursor: pointer;
+      outline: 1px solid #CA47D1;
+    }
+  }
+}
+
+.modal-title {
+  text-transform: uppercase;
+  font-size: 1.1em;
+}
+
+.edit-inputs {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  @media only screen and (max-width: 625px) {
+    flex-flow: column wrap;
+    justify-content: center;
+  }
+}
+
+.edit-input {
+  width: 30%;
+  margin-bottom: 5px;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  @media only screen and (max-width: 625px) {
+    width: 100%;
+  }
+}
+
+.edit-text {
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  margin-bottom: 5px;
+  width: 100%;
+  min-height: 150px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  resize: none;
+  @media only screen and (max-width: 625px) {
+    min-height: 100px;
+  }
+}
+
+.edit-buttons {
+  display: flex;
+  width: 100%;
+  margin: 10px 0;
+  @media only screen and (max-width: 625px) {
+    flex-flow: column wrap;
+    align-items: center;
+  }
+}
