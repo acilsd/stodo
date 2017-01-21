@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Item from '../Item';
+import ModalDelete from '../Modals';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import styles from './style.scss';
@@ -23,7 +24,7 @@ class List extends Component {
   }
 
   render() {
-    const { completeTodo, deleteTodo, } = this.props;
+    const { completeTodo, modalDelete } = this.props;
     return (
         <div class='todo-list'>
           <h1>What have to be done</h1>
@@ -39,11 +40,12 @@ class List extends Component {
                   note={item.note}
                   completed={item.completed}
                   toggler={completeTodo}
-                  deleter={deleteTodo}
+                  deleter={modalDelete}
                 />
               );
             })
           }
+          <ModalDelete />
         </div>
     );
   }

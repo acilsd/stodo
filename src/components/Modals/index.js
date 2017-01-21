@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../../actions';
 import styles from './styles.scss';
 
-export const ModalDelete = ({ text, confirm, decline }) => {
-  return (
-    <div class='modal modal--delete'>
-      <h3 class='modal__title'>Are you sure you want to delete task "{text}"?</h3>
-      <button class='btn btn--red' onClick={confirm}>yes</button>
-      <button class='btn' onClick={decline}>no</button>
-    </div>
-  );
-};
+class ModalDelete extends Component {
 
-export const ModalAdd = () => {
-  return (
-    <div class='modal modal--add'></div>
-  );
-};
+  handleDelete = () => {
+    this.props.deleteTodo(this.props.tempTodo.id);
+    this.props.hideAllModals();
+  }
 
-export const ModalEdit = () => {
-  return (
-    <div class='modal modal--edit'>
-      Edit :3
-    </div>
-  );
-};
+  render() {
+    const { deleting, tempTodo, hideAllModals } = this.props;
+    return (
+        deleting ?
+        <div class='modal modal--delete'>
+          <h3 class='modal__title'>Are you sure you want to delete this task?</h3>
+          <p>Task name: {tempTodo.text}</p>
+          <button class='btn btn--red' onClick={this.handleDelete}>yes</button>
+          <button class='btn' onClick={hideAllModals}>no</button>
+        </div>
+        :
+        null
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  deleting: state.modals.deleting,
+  tempTodo: state.modals.tempTodo
+});
+
+export default connect(mapStateToProps, actions)(ModalDelete);
