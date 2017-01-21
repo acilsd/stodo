@@ -1,11 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent , PropTypes } from 'react';
 import styles from './style.scss';
 
-export default class Item extends Component {
+export default class Item extends PureComponent  {
   static propTypes = {
     toggler: PropTypes.func.isRequired,
     deleter: PropTypes.func.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
   }
 
   handleToggle = () => {
@@ -16,7 +18,7 @@ export default class Item extends Component {
   handleDelete = () => {
     const box = {
       id: this.props.id,
-      text: this.props.text
+      name: this.props.name
     };
     this.props.deleter(box);
   };
@@ -26,11 +28,11 @@ export default class Item extends Component {
   };
 
   render() {
-    const { text, time, note, completed } = this.props;
+    const { name, text, time, note, completed } = this.props;
 
     return (
       <div class='todo'>
-        <h2 class='todo__title'>Task description</h2>
+        <h2 class='todo__title'>Task: <b>{name}</b></h2>
         <p class='todo__text'>{text}</p>
         <div class='todo__description'>
           <span class='todo__item'><span>Current status:</span><b>{completed ? 'Done' : 'In process'}</b></span>
@@ -39,8 +41,8 @@ export default class Item extends Component {
         </div>
         <div class='todo__actions'>
           <button class='btn-td btn--pink' onClick={this.handleToggle}>{completed ? 'Uncomplete' : 'Complete?'}</button>
-          <button class='btn-td' onClick={this.toggleEdit}>Edit :3</button>
-          <button class='btn-td btn--red' onClick={this.handleDelete}>Delete!</button>
+          <button class='btn-td' onClick={this.toggleEdit}>Edit</button>
+          <button class='btn-td btn--red' onClick={this.handleDelete}>Delete</button>
         </div>
       </div>
     );

@@ -4,17 +4,20 @@
   justify-content: center;
   padding: 10px;
   position: relative;
+  margin-bottom: 20px;
+  border: 1px solid #AAADAD;
   &__title {
     text-transform: uppercase;
     font-weight: normal;
     font-size: 1.1em;
     margin: 0;
+    margin-bottom: 10px;
     padding: 0;
   }
   &__text {
     margin: 0;
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 5px 15px;
     font-size: 1em;
     line-height: 1em;
     word-break: break-all;

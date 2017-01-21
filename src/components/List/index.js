@@ -35,6 +35,7 @@ class List extends Component {
                 <Item
                   key={item.id}
                   id={item.id}
+                  name={item.name}
                   text={item.text}
                   time={item.time}
                   note={item.note}

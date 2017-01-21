@@ -7,8 +7,12 @@
   margin: auto;
   z-index: 1000;
   background-color: #E6E8E6;
+  border: 2px solid #AAADAD;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  & p {
+    text-transform: uppercase;
+  }
 }
