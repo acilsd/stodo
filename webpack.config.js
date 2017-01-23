@@ -5,9 +5,12 @@ const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+
 module.exports = {
   context: path.join(__dirname, '/src'),
-  entry: ['babel-polyfill', './index'],
+  entry: ['./index'],
   output: {
     path: path.join(__dirname, '/build'),
     publicPath: '/',
@@ -20,6 +23,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new BundleAnalyzerPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -53,11 +57,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: [ 'style', 'css?sourceMap', 'postcss', 'sass' ]
-      },
-      {
-        test: /\.styl$/,
-        loaders: [ 'style', 'css?sourceMap', 'postcss', 'stylus']
+        loaders: [ 'style', 'css', 'postcss', 'sass' ]
       }
     ]
   },
@@ -75,18 +75,25 @@ module.exports = {
 
 if (NODE_ENV == 'production') {
   module.exports.plugins.push(
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings:       false,
-        drop_console:   true,
-        unsafe:         true
-      },
+      beautify: false,
+      comments: false,
       mangle: true,
       sourcemap: false,
-      beautify: false,
-      dead_code: true
-    })
+      compress: {
+        booleans: true,
+        conditionals: true,
+        dead_code: true,
+        drop_console: true,
+        if_return: true,
+        join_vars: true,
+        sequences: true,
+        unused: true,
+        warnings: false,
+      }
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.AggressiveMergingPlugin()
   );
 }
