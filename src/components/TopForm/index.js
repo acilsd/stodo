@@ -56,10 +56,8 @@ class Search extends Component {
             </label>
           </div>
 
-          <div class='top__right'>
-            <NavLink class='btn btn--new' to='/add'>New task</NavLink>
-            <button class='btn btn--lgt'>Logout</button>
-          </div>
+          <button class='lgt'>Logout</button>
+
 
         </form>
       </div>
