@@ -10,23 +10,8 @@
 
 body {
   min-width: 480px;
+  font-family: "Roboto Slab", Arial, Tahoma, serif;
   font-size: 16px;
   line-height: 16px;
   font-weight: 400;
-}
-
-#container {
-  width: 100%;
-}
-
-.main {
-  max-width: 960px;
-  min-width: 480px;
-  min-height: 100vh;
-  margin: 0 auto;
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
-  justify-content: center;
-  background-color: #E6E8E6;
 }

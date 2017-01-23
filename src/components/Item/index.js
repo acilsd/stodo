@@ -49,9 +49,9 @@ export default class Item extends PureComponent  {
           <span class='todo__item'><span>Special note:</span><b>{note || 'no'}</b></span>
         </div>
         <div class='todo__actions'>
-          <button class='btn-td btn--pink' onClick={this.handleToggle}>{completed ? 'Uncomplete' : 'Complete?'}</button>
+          <button class='btn-td btn-td--pink' onClick={this.handleToggle}>{completed ? 'Uncomplete' : 'Complete?'}</button>
           <button class='btn-td' onClick={this.toggleEdit}>Edit</button>
-          <button class='btn-td btn--red' onClick={this.handleDelete}>Delete</button>
+          <button class='btn-td btn-td--red' onClick={this.handleDelete}>Delete</button>
         </div>
       </div>
     );

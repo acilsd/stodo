@@ -20,7 +20,7 @@ class List extends Component {
                 ? todo.filter((item) => item.completed === true)
                 : todo;
     return box.filter((item) => {
-      return item.text.toLowerCase().indexOf(search) > -1;
+      return item.name.toLowerCase().indexOf(search) > -1;
     });
   }
 
@@ -29,13 +29,12 @@ class List extends Component {
     return (
         <div class='todo-list'>
           <h1>Greetings, User</h1>
-          <p class='user'>Here is your current tasklist</p>
 
           {
             filtered
             ?
-              <p class='user'>Currently displaying completed tasks only</p>
-            : null
+              <p class='user'>Currently displaying <b>completed</b> tasks only</p>
+            : <p class='user'>Here is your current tasklist</p>
           }
 
           {
@@ -56,7 +55,7 @@ class List extends Component {
               );
             })
           }
-          
+
           <ModalDelete />
           <ModalEdit />
         </div>

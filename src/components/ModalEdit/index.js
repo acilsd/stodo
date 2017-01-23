@@ -87,9 +87,9 @@ class ModalEdit extends PureComponent {
             ref={c => this.text = c}
           />
           <div class='edit-buttons'>
-            <button class='btn btn--pink' onClick={this.reset}>Clear all</button>
-            <button class='btn' type='submit'>Submit</button>
-            <button class='btn btn--red' onClick={this.hide}>Cancel</button>
+            <button class='btn-edit btn-edit--pink' onClick={this.reset}>Clear all</button>
+            <button class='btn-edit' type='submit'>Submit</button>
+            <button class='btn-edit btn-edit--red' onClick={this.hide}>Cancel</button>
           </div>
         </form>
 

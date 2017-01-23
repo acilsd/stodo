@@ -4,7 +4,7 @@ import TopForm from '../TopForm';
 
 const Main = () => {
   return (
-    <div class='main'>
+    <div>
       <TopForm />
       <List />
     </div>

@@ -28,29 +28,40 @@ class Search extends Component {
   }
 
   render() {
-    let text = this.props.filtered ? 'all' : 'done';
+    let text = this.props.filtered ? 'completed' : 'all';
     return (
       <div class='top'>
         <form onSubmit={this.handleSubmit} class='search-form'>
-          <input
-            type='text'
-            ref={c => this._text = c}
-            placeholder='search...'
-            class='search-form__input'/>
-          <input
-            onChange={this.handleCheck}
-            type='checkbox'
-            ref={c => this._check = c}
-            class='search-form__check'
-            id='check'
-          />
-          <label for='check' class='search-form__label'>
-            Toggle {`${text}`}
-          </label>
-          <button onClick={this.handleSubmit} class='btn'>Submit</button>
-          <button onClick={this.reset} class='btn btn--red'>Reset</button>
+          <div class='top__left'>
+            <div class='search-group'>
+              <input
+                type='text'
+                ref={c => this._text = c}
+                placeholder='search by name'
+                class='search-form__input'/>
+              <div class='search-group__actions'>
+                <button onClick={this.handleSubmit} class='btn'>Submit</button>
+                <button onClick={this.reset} class='btn btn--red'>Reset</button>
+              </div>
+            </div>
+            <input
+              onChange={this.handleCheck}
+              type='checkbox'
+              ref={c => this._check = c}
+              class='search-form__check'
+              id='check'
+            />
+            <label for='check' class='search-form__label'>
+              Filter by status: <b>{`${text}`}</b>
+            </label>
+          </div>
+
+          <div class='top__right'>
+            <NavLink class='btn btn--new' to='/add'>New task</NavLink>
+            <button class='btn btn--lgt'>Logout</button>
+          </div>
+
         </form>
-        <NavLink class='btn btn--new' to='/add'>New task</NavLink>
       </div>
     );
   }

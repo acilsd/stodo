@@ -8,12 +8,13 @@
   top: 40%;
   margin: auto;
   z-index: 1000;
-  background-color: #E6E8E6;
-  border: 2px solid #AAADAD;
+  background-color: #fff;
+  border: 2px solid rgba(202, 71, 209, 0.7);;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  padding: 10px 20px;
   @media only screen and (max-width: 625px) {
     top: 30%;
   }
@@ -36,6 +37,7 @@
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  margin-bottom: 30px;
   @media only screen and (max-width: 625px) {
     flex-flow: column wrap;
     justify-content: center;
@@ -45,16 +47,18 @@
 .edit-input {
   width: 30%;
   margin-bottom: 5px;
-  outline: none;
   border: none;
   padding: 5px 10px;
+  outline: 1px solid rgba(36, 209, 59, 0.5);
+  &:focus {
+    outline: 1px solid rgba(36, 209, 59, 1);
+  }
   @media only screen and (max-width: 625px) {
     width: 100%;
   }
 }
 
 .edit-text {
-  outline: none;
   border: none;
   padding: 5px 10px;
   margin-bottom: 5px;
@@ -63,6 +67,10 @@
   flex-grow: 1;
   flex-shrink: 0;
   resize: none;
+  outline: 1px solid rgba(36, 209, 59, 0.5);
+  &:focus {
+    outline: 1px solid rgba(36, 209, 59, 1);
+  }
   @media only screen and (max-width: 625px) {
     min-height: 100px;
   }
@@ -75,5 +83,35 @@
   @media only screen and (max-width: 625px) {
     flex-flow: column wrap;
     align-items: center;
+  }
+  .btn-edit {
+    flex-grow: 1;
+    padding: 5px 10px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    font-size: 0.9em;
+    border: none;
+    outline: none;
+    background-color: rgba(36, 209, 59, 0.3);
+    &:hover {
+      cursor: pointer;
+      outline: 1px solid #24D13B;
+    }
+    &--pink {
+      background-color: rgba(202, 71, 209, 0.3);
+      &:hover {
+        cursor: pointer;
+        outline: 1px solid #CA47D1;
+      }
+    }
+    &--red {
+      background-color: rgba(227, 100, 100, 0.3);
+      &:hover {
+        cursor: pointer;
+        outline: 1px solid #E36464;
+      }
+    }
   }
 }
