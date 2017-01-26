@@ -1,4 +1,5 @@
 import React, { PureComponent , PropTypes } from 'react';
+
 import styles from './style.scss';
 
 export default class Item extends PureComponent  {

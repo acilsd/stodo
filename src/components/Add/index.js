@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+
 import * as actions from '../../actions';
 import styles from './style.scss';
 
@@ -26,7 +27,7 @@ class Add extends Component {
 
     if (this.checkValidity(data)) {
       this.props.addTodo(data);
-      this.context.router.push(`/`);
+      this.context.router.push(`/main`);
     }
   };
 
@@ -39,7 +40,7 @@ class Add extends Component {
 
   revert = (e) => {
     e.preventDefault();
-    this.context.router.push(`/`);
+    this.context.router.push(`/list`);
   }
 
   render() {
@@ -49,7 +50,7 @@ class Add extends Component {
         <p>Please fill in this form :3</p>
         <div class='inputs'>
           <input class='modal-input' type='text' ref={c => this.name = c} placeholder='task name'/>
-          <input class='modal-input' type='text' ref={c => this.time = c} placeholder='time limit'/>
+          <input class='modal-input' type='text' ref={c => this.time = c} placeholder='desired limits'/>
           <input class='modal-input' type='text' ref={c => this.note = c} placeholder='special notes'/>
         </div>
         <textarea class='modal-text' ref={c => this.text = c} placeholder='enter your task text here'></textarea>

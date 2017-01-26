@@ -15,7 +15,7 @@ const initialState = {
       id: 'afawg',
       name: 'test',
       text: 'sasai',
-      time: '12.12.1999',
+      time: '',
       note: 'kudasai',
       completed: false
     },
@@ -23,7 +23,7 @@ const initialState = {
       id: 'ahgjjhju',
       name: 'test2',
       text: 'sasai2',
-      time: '12.12.1999',
+      time: '',
       note: 'kudasai',
       completed: false
     },
@@ -31,7 +31,7 @@ const initialState = {
       id: 'afaegagawg',
       name: 'test3',
       text: 'sasai3',
-      time: '12.12.1999',
+      time: '',
       note: 'kudasai',
       completed: false
     }

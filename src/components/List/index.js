@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+
 import Item from '../Item';
 import ModalDelete from '../ModalDelete';
 import ModalEdit from '../ModalEdit';
 import { NavLink } from '../Links';
-
-import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import styles from './style.scss';
 
@@ -36,9 +36,12 @@ class List extends Component {
             filtered
             ?
               <p class='user'>Currently displaying <b>completed</b> tasks only</p>
-            : <p class='user'>Here is your current tasklist</p>
+            :
+            <p class='user'>Here is your current tasklist</p>
           }
+
           <NavLink class='new-task' to='/add'>New task</NavLink>
+
           {
             this.makeRealContent().map((item) => {
               return (
