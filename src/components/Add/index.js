@@ -6,7 +6,7 @@ import styles from './style.scss';
 
 class Add extends Component {
   static propTypes = {
-    addTodo: PropTypes.func.isRequired,
+    addToFirebase: PropTypes.func.isRequired,
     failure: PropTypes.func.isRequired,
     todo: PropTypes.array.isRequired
   };
@@ -26,8 +26,8 @@ class Add extends Component {
     };
 
     if (this.checkValidity(data)) {
-      this.props.addTodo(data);
-      this.context.router.push(`/main`);
+      this.props.addToFirebase(data);
+      this.context.router.transitionTo('/main');
     }
   };
 
@@ -40,7 +40,7 @@ class Add extends Component {
 
   revert = (e) => {
     e.preventDefault();
-    this.context.router.push(`/list`);
+    this.context.router.transitionTo('/main');
   }
 
   render() {

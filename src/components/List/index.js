@@ -16,6 +16,10 @@ class List extends Component {
     search: PropTypes.string,
   }
 
+  componentDidMount() {
+    this.props.fetchTasks();
+  }
+
   makeRealContent = () => {
     const { todo, filtered, search } = this.props;
     const box = filtered
@@ -27,7 +31,7 @@ class List extends Component {
   }
 
   render() {
-    const { completeTodo, modalDelete, modalEdit, filtered } = this.props;
+    const { toggleFbStatus, modalDelete, modalEdit, filtered } = this.props;
     return (
         <div class='todo-list'>
           <h1>Greetings, User</h1>
@@ -53,7 +57,7 @@ class List extends Component {
                   time={item.time}
                   note={item.note}
                   completed={item.completed}
-                  toggler={completeTodo}
+                  toggler={toggleFbStatus}
                   deleter={modalDelete}
                   editor={modalEdit}
                 />

@@ -1,4 +1,5 @@
 import {
+  FETCH_TODOS,
   ADD_TODO,
   FILTER_TODO,
   SEARCH_TODO,
@@ -10,36 +11,13 @@ import {
 const initialState = {
   filtered: false,
   search: '',
-  todos: [
-    {
-      id: 'afawg',
-      name: 'test',
-      text: 'sasai',
-      time: '',
-      note: 'kudasai',
-      completed: false
-    },
-    {
-      id: 'ahgjjhju',
-      name: 'test2',
-      text: 'sasai2',
-      time: '',
-      note: 'kudasai',
-      completed: false
-    },
-    {
-      id: 'afaegagawg',
-      name: 'test3',
-      text: 'sasai3',
-      time: '',
-      note: 'kudasai',
-      completed: false
-    }
-  ]
+  todos: []
 };
 
 export default function todoReducer(state = initialState, action) {
   switch (action.type) {
+  case FETCH_TODOS:
+    return {...state, todos: action.payload};
   case ADD_TODO:
     return {...state, todos: [...state.todos, action.payload]};
   case FILTER_TODO:

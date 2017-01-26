@@ -5,6 +5,7 @@ import { BrowserRouter, Match, Miss } from 'react-router';
 import Login from '../Login/';
 import Main from '../Main/';
 import Add from '../Add/';
+import ErrorPage from '../Error';
 
 import styles from './style.scss';
 
@@ -15,6 +16,7 @@ const App = () => {
         <Match exactly pattern="/" component={Login} />
         <Match pattern="/main" component={Main} />
         <Match pattern="/add" component={Add} />
+        <Miss component={ErrorPage}/>
       </div>
     </BrowserRouter>
   );
