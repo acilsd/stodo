@@ -5,10 +5,12 @@ import {
   SEARCH_TODO,
   DELETE_TODO,
   COMPLETE_TODO,
-  EDIT_TODO
+  EDIT_TODO,
+  LOADING
 } from '../constants/';
 
 const initialState = {
+  loading: false,
   filtered: false,
   search: '',
   todos: []
@@ -16,8 +18,10 @@ const initialState = {
 
 export default function todoReducer(state = initialState, action) {
   switch (action.type) {
+  case LOADING:
+    return {...state, loading: true};
   case FETCH_TODOS:
-    return {...state, todos: action.payload};
+    return {...state, todos: action.payload, loading: false};
   case ADD_TODO:
     return {...state, todos: [...state.todos, action.payload]};
   case FILTER_TODO:

@@ -1,3 +1,5 @@
+/*eslint no-console: off*/
+
 import * as types from '../constants/';
 
 import firebase, { fbRef } from '../firebase';
@@ -5,23 +7,29 @@ import firebase, { fbRef } from '../firebase';
 import {
   addTodo,
   completeTodo,
+  editTodo,
   deleteTodo
 } from './actions-tasks';
 
 export const fetchTasks = () => {
   return (dispatch) => {
     const dataRef = fbRef.child('tasks');
+    dispatch({
+      type: types.LOADING
+    });
     return dataRef.once('value').then((res) => {
       const raw = res.val() || {};
-      let parsed = [];
-      Object.keys(raw).map((id) => {
-        parsed.push({ id, ...raw[id] }); //thats not good, goin to change is asap
+      const parsed = Object.keys(raw).map((id) => {
+        return {id, ...raw[id]};
       });
       dispatch({
         type: types.FETCH_TODOS,
         payload: parsed
       });
-    });
+    }),
+    (err) => {
+      console.error(err);
+    };
   };
 };
 
@@ -40,7 +48,38 @@ export const addToFirebase = (data) => {
         ...newTask,
         id: taskRef.key
       }));
-    });
+    }),
+    (err) => {
+      console.error(err);
+    };
+  };
+};
+
+export const editInFirebase = (data) => {
+  return (dispatch) => {
+    const taskRef = fbRef.child('tasks');
+    return taskRef.then(() => {
+      dispatch(editTodo({
+        id: taskRef.key
+      }));
+    }),
+    (err) => {
+      console.error(err);
+    };
+  };
+};
+
+export const deleteFromFirebase = (data) => {
+  return (dispatch) => {
+    const taskRef = fbRef.child('tasks');
+    return taskRef.then(() => {
+      dispatch(deleteTodo({
+        id: taskRef.key
+      }));
+    }),
+    (err) => {
+      console.error(err);
+    };
   };
 };
 
@@ -50,6 +89,9 @@ export const toggleFbStatus = (id, status) => {
     const updates = { completed: status };
     return taskRef.update(updates).then(() => {
       dispatch(completeTodo(id, status));
-    });
+    }),
+    (err) => {
+      console.error(err);
+    };
   };
 };

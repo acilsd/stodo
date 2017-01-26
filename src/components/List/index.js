@@ -12,7 +12,10 @@ class List extends Component {
   static propTypes = {
     todo: PropTypes.array.isRequired,
     filtered: PropTypes.bool.isRequired,
-    completeTodo: PropTypes.func.isRequired,
+    toggleFbStatus: PropTypes.func.isRequired,
+    modalDelete: PropTypes.func.isRequired,
+    modalEdit: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
     search: PropTypes.string,
   }
 
@@ -31,7 +34,7 @@ class List extends Component {
   }
 
   render() {
-    const { toggleFbStatus, modalDelete, modalEdit, filtered } = this.props;
+    const { toggleFbStatus, modalDelete, modalEdit, filtered, loading } = this.props;
     return (
         <div class='todo-list'>
           <h1>Greetings, User</h1>
@@ -47,7 +50,10 @@ class List extends Component {
           <NavLink class='new-task' to='/add'>New task</NavLink>
 
           {
-            this.makeRealContent().map((item) => {
+            loading
+            ?
+              <div>LOADING HUE HUE</div>
+            : this.makeRealContent().map((item) => {
               return (
                 <Item
                   key={item.id}
@@ -75,7 +81,8 @@ class List extends Component {
 const mapStateToProps = state => ({
   todo: state.todo.todos,
   filtered: state.todo.filtered,
-  search: state.todo.search
+  search: state.todo.search,
+  loading: state.todo.loading
 });
 
 

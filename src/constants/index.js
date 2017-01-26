@@ -10,4 +10,5 @@ export const SHOW_MODAL_DELETE = 'SHOW_MODAL_DELETE';
 export const SHOW_MODAL_EDIT = 'SHOW_MODAL_EDIT';
 export const HIDE_MODALS = 'HIDE_MODALS';
 
+export const LOADING = 'LOADING';
 export const FAIL = 'FAIL';
