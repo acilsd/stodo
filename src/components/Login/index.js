@@ -7,11 +7,11 @@ import styles from './style.scss';
 class Login extends Component {
 
   render() {
-
     return (
-        <div>
-          hi
-        </div>
+      <div>
+        hi
+        <button>Login</button>
+      </div>
     );
   }
 }

@@ -23,7 +23,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    //new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
@@ -75,6 +75,9 @@ module.exports = {
 
 if (NODE_ENV == 'production') {
   module.exports.plugins.push(
+    new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,
       comments: false,
@@ -91,9 +94,6 @@ if (NODE_ENV == 'production') {
         unused: true,
         warnings: false,
       }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
+    })
   );
 }

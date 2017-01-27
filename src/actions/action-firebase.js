@@ -1,8 +1,6 @@
 /*eslint no-console: off*/
-
 import * as types from '../constants/';
-
-import firebase, { fbRef } from '../firebase';
+import { fbRef } from '../firebase';
 
 import {
   addTodo,
@@ -26,10 +24,7 @@ export const fetchTasks = () => {
         type: types.FETCH_TODOS,
         payload: parsed
       });
-    }),
-    (err) => {
-      console.error(err);
-    };
+    }), err => console.error(err);
   };
 };
 
@@ -48,10 +43,7 @@ export const addToFirebase = (data) => {
         ...newTask,
         id: taskRef.key
       }));
-    }),
-    (err) => {
-      console.error(err);
-    };
+    }), err => console.error(err);
   };
 };
 
@@ -62,10 +54,7 @@ export const editInFirebase = (data) => {
       dispatch(editTodo({
         id: taskRef.key
       }));
-    }),
-    (err) => {
-      console.error(err);
-    };
+    }), err => console.error(err);
   };
 };
 
@@ -76,10 +65,7 @@ export const deleteFromFirebase = (data) => {
       dispatch(deleteTodo({
         id: taskRef.key
       }));
-    }),
-    (err) => {
-      console.error(err);
-    };
+    }), err => console.error(err);
   };
 };
 
@@ -89,9 +75,6 @@ export const toggleFbStatus = (id, status) => {
     const updates = { completed: status };
     return taskRef.update(updates).then(() => {
       dispatch(completeTodo(id, status));
-    }),
-    (err) => {
-      console.error(err);
-    };
+    }), err => console.error(err);
   };
 };

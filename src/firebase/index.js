@@ -1,4 +1,6 @@
-import firebase from 'firebase';
+/*eslint no-console: off*/
+const Firebase = require('firebase/app');
+const database = require('firebase/database');
 
 const config = {
   apiKey: "AIzaSyBHX5D5f0_-sBlWS7iOHc6anmOCD-KREG4",
@@ -8,7 +10,6 @@ const config = {
   messagingSenderId: "362268761852"
 };
 
-firebase.initializeApp(config);
+Firebase.initializeApp(config);
 
-export const fbRef = firebase.database().ref();
-export default firebase;
+export const fbRef = database().ref();
