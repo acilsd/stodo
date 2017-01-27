@@ -5,6 +5,7 @@ import Item from '../Item';
 import ModalDelete from '../ModalDelete';
 import ModalEdit from '../ModalEdit';
 import { NavLink } from '../Links';
+import LoadingSpinner from '../LoadingSpinner';
 import * as actions from '../../actions';
 import styles from './style.scss';
 
@@ -35,10 +36,10 @@ class List extends Component {
 
   render() {
     const { toggleFbStatus, modalDelete, modalEdit, filtered, loading } = this.props;
+    const content = this.makeRealContent();
     return (
         <div class='todo-list'>
           <h1>Greetings, User</h1>
-
           {
             filtered
             ?
@@ -48,12 +49,11 @@ class List extends Component {
           }
 
           <NavLink class='new-task' to='/add'>New task</NavLink>
-
+          <ModalDelete />
+          <ModalEdit />
+          <LoadingSpinner isLoading={loading}/>
           {
-            loading
-            ?
-              <div>LOADING HUE HUE</div>
-            : this.makeRealContent().map((item) => {
+            content.map((item) => {
               return (
                 <Item
                   key={item.id}
@@ -70,9 +70,6 @@ class List extends Component {
               );
             })
           }
-
-          <ModalDelete />
-          <ModalEdit />
         </div>
     );
   }

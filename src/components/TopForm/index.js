@@ -8,8 +8,13 @@ import styles from './style.scss';
 class Search extends Component {
   static propTypes = {
     searchTodo: PropTypes.func.isRequired,
-    filterDone: PropTypes.func.isRequired
+    filterDone: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired
   };
+
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +33,13 @@ class Search extends Component {
     this.props.searchTodo('');
   }
 
+  handleLogOut = (e) => {
+    e.preventDefault();
+    this.props.logout().then(() => {
+      this.context.router.transitionTo('/');
+    });
+  }
+
   render() {
     let text = this.props.filtered ? 'completed' : 'all';
     return (
@@ -35,9 +47,7 @@ class Search extends Component {
         <form onSubmit={this.handleSubmit} class='search-form'>
           <div class='top__left'>
             <div class='search-group'>
-              <input
-                type='text'
-                ref={c => this._text = c}
+              <input type='text' ref={c => this._text = c}
                 placeholder='search by name'
                 class='search-form__input'/>
               <div class='search-group__actions'>
@@ -45,10 +55,8 @@ class Search extends Component {
                 <button onClick={this.reset} class='btn btn--red'>Reset</button>
               </div>
             </div>
-            <input
+            <input type='checkbox' ref={c => this._check = c}
               onChange={this.handleCheck}
-              type='checkbox'
-              ref={c => this._check = c}
               class='search-form__check'
               id='check'
             />
@@ -57,8 +65,7 @@ class Search extends Component {
             </label>
           </div>
 
-          <button class='lgt'>Logout</button>
-
+          <button onClick={this.handleLogOut} class='lgt'>Logout</button>
 
         </form>
       </div>
@@ -67,7 +74,8 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  filtered: state.todo.filtered
+  filtered: state.todo.filtered,
+  isLoggedIn: state.user.loggedIn
 });
 
 export default connect(mapStateToProps, actions)(Search);

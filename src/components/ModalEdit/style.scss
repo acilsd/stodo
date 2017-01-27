@@ -62,8 +62,8 @@
   border: none;
   padding: 5px 10px;
   margin-bottom: 5px;
-  width: 100%;
-  min-height: 150px;
+  width: 98%;
+  min-height: 120px;
   flex-grow: 1;
   flex-shrink: 0;
   resize: none;
@@ -82,7 +82,6 @@
   margin: 10px 0;
   @media only screen and (max-width: 625px) {
     flex-flow: column wrap;
-    align-items: center;
   }
   .btn-edit {
     flex-grow: 1;

@@ -1,24 +1,10 @@
 import React from 'react';
 import normalize from '../../../node_modules/node-normalize-scss/_normalize.scss';
-import { BrowserRouter, Match, Miss } from 'react-router';
-
-import Login from '../Login/';
-import Main from '../Main/';
-import Add from '../Add/';
-import ErrorPage from '../Error';
-
-import styles from './style.scss';
+import { AppRoutes } from '../../router';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div>
-        <Match exactly pattern="/" component={Login} />
-        <Match pattern="/main" component={Main} />
-        <Match pattern="/add" component={Add} />
-        <Miss component={ErrorPage}/>
-      </div>
-    </BrowserRouter>
+    <AppRoutes />
   );
 };
 
