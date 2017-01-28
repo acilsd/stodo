@@ -6,13 +6,16 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = {
   context: path.join(__dirname, '/src'),
-  entry: ['./index'],
+  entry: {
+    app: "./index.js",
+    vendor: ["react", "react-dom", "react-router", "firebase"]
+  },
   output: {
-    path: path.join(__dirname, '/build'),
+    path: path.join(__dirname, '/public'),
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -23,8 +26,9 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    //new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(NODE_ENV)
@@ -94,6 +98,13 @@ if (NODE_ENV == 'production') {
         unused: true,
         warnings: false,
       }
+    }),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   );
 }

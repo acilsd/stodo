@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Match, Miss } from 'react-router';
+import { Redirect, Match } from 'react-router';
 
 const ProtectedRoute = ({ component: Component, status, ...rest }) => (
   <Match {...rest} render={props => (
