@@ -13,6 +13,10 @@ class Login extends Component {
     router: PropTypes.object.isRequired
   }
 
+  componentDidMount() {
+    if (this.props.isLoggedIn) this.context.router.transitionTo('/main');
+  }
+
   handleLogIn = (e) => {
     e.preventDefault();
     this.props.login().then(() => {

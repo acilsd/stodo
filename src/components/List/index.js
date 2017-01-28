@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Item from '../Item';
-import ModalDelete from '../ModalDelete';
-import ModalEdit from '../ModalEdit';
 import { NavLink } from '../Links';
 import LoadingSpinner from '../LoadingSpinner';
 import * as actions from '../../actions';
@@ -49,8 +47,7 @@ class List extends Component {
           }
 
           <NavLink class='new-task' to='/add'>New task</NavLink>
-          <ModalDelete />
-          <ModalEdit />
+
           <LoadingSpinner isLoading={loading}/>
           {
             content.map((item) => {

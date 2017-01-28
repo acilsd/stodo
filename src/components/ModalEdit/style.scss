@@ -1,7 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 .modal-edit {
-  position: fixed;
-  max-width: 960px;
-  min-width: 480px;
+  position: absolute;
+  width: 480px;
   min-height: 190px;
   left: 0;
   right: 0;
@@ -35,57 +38,45 @@
 .edit-inputs {
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 30px;
-  @media only screen and (max-width: 625px) {
-    flex-flow: column wrap;
-    justify-content: center;
-  }
 }
 
 .edit-input {
-  width: 30%;
+  width: 100%;
   margin-bottom: 5px;
-  border: none;
   padding: 5px 10px;
+  text-align: center;
+  border: none;
   outline: 1px solid rgba(36, 209, 59, 0.5);
   &:focus {
     outline: 1px solid rgba(36, 209, 59, 1);
-  }
-  @media only screen and (max-width: 625px) {
-    width: 100%;
   }
 }
 
 .edit-text {
   border: none;
-  padding: 5px 10px;
   margin-bottom: 5px;
-  width: 98%;
+  padding: 5px 10px;
+  width: 100%;
   min-height: 120px;
-  flex-grow: 1;
-  flex-shrink: 0;
   resize: none;
   outline: 1px solid rgba(36, 209, 59, 0.5);
   &:focus {
     outline: 1px solid rgba(36, 209, 59, 1);
   }
-  @media only screen and (max-width: 625px) {
-    min-height: 100px;
-  }
 }
 
 .edit-buttons {
   display: flex;
+  flex-flow: column wrap;
   width: 100%;
   margin: 10px 0;
-  @media only screen and (max-width: 625px) {
-    flex-flow: column wrap;
-  }
   .btn-edit {
     flex-grow: 1;
-    padding: 5px 10px;
+    padding: 5px 0;
     text-align: center;
     text-transform: uppercase;
     text-decoration: none;
