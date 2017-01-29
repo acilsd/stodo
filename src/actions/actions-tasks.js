@@ -31,4 +31,6 @@ export const modalEdit = (obj) => ({ type: types.SHOW_MODAL_EDIT, payload: obj }
 
 export const hideAllModals = () => ({ type: types.HIDE_MODALS });
 
-export const failure = (fail) => ({ type: types.FAIL });
+export const validateThis = (obj) => ({ type: types.FAIL, payload: obj });
+
+export const deValidate = () => ({ type: types.UNFAIL });

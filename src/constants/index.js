@@ -16,3 +16,4 @@ export const CHECK_SESSION = 'CHECK_SESSION';
 
 export const LOADING = 'LOADING';
 export const FAIL = 'FAIL';
+export const UNFAIL = 'UNFAIL';

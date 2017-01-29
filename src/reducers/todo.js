@@ -6,14 +6,21 @@ import {
   DELETE_TODO,
   COMPLETE_TODO,
   EDIT_TODO,
-  LOADING
+  LOADING,
+  FAIL,
+  UNFAIL
 } from '../constants/';
 
 const initialState = {
   loading: false,
   filtered: false,
   search: '',
-  todos: []
+  todos: [],
+  errors: {
+    noName: true,
+    noText: true,
+    invalidTime: true
+  }
 };
 
 export default function todoReducer(state = initialState, action) {
@@ -34,6 +41,10 @@ export default function todoReducer(state = initialState, action) {
     return {...state, todos: deleteFromState(state.todos, action.payload)};
   case EDIT_TODO:
     return {...state, todos: editTodo(state.todos, action.payload)};
+  case FAIL:
+    return {...state, errors: Object.assign({}, state.errors, action.payload)};
+  case UNFAIL:
+    return {...state, errors: nullify(state.errors)};
   default:
     return state;
   }
@@ -63,4 +74,12 @@ const editTodo = (state, obj) => {
     return item;
   });
   return newState;
+};
+
+const nullify = (state) => {
+  return {
+    noName: true,
+    noText: true,
+    invalidTime: true
+  };
 };

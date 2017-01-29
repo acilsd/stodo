@@ -10,7 +10,8 @@ import {
   modalDelete,
   modalEdit,
   hideAllModals,
-  failure
+  validateThis,
+  deValidate
 } from './actions-tasks';
 
 import {
@@ -32,7 +33,8 @@ export {
   modalDelete,
   modalEdit,
   hideAllModals,
-  failure,
+  validateThis,
+  deValidate,
   addToFirebase,
   toggleFbStatus,
   fetchTasks,
