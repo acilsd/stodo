@@ -9,14 +9,15 @@ class ModalEdit extends PureComponent {
     editInFirebase: PropTypes.func.isRequired,
     hideAllModals: PropTypes.func.isRequired,
     editing: PropTypes.bool.isRequired,
-    tempTodo: PropTypes.object.isRequired
+    tempTodo: PropTypes.object.isRequired,
+    uid: PropTypes.string.isRequired,
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     const toEdit = this.collectValues();
     const uid = this.props.uid;
-    if (this.checkValidity(toEdit)) {      
+    if (this.checkValidity(toEdit)) {
       this.props.editInFirebase(toEdit, uid);
       this.props.hideAllModals();
     }
@@ -57,47 +58,41 @@ class ModalEdit extends PureComponent {
   render() {
     const { editing, tempTodo } = this.props;
     return (
-        editing
-
-        ?
-
-        <form onSubmit={this.handleSubmit} class='modal-edit'>
-          <h3 class='modal-title'>Currently editing task: {tempTodo.name}</h3>
-          <div class='edit-inputs'>
-            <input
-              class='edit-input'
-              type='text'
-              placeholder='task name'
-              defaultValue={tempTodo.name}
-              ref={c => this.name = c} />
-            <input
-              class='edit-input'
-              type='text'
-              placeholder='task time'
-              defaultValue={tempTodo.time}
-              ref={c => this.time = c} />
-            <input
-              class='edit-input'
-              type='text'
-              placeholder='task note'
-              defaultValue={tempTodo.note}
-              ref={c => this.note = c} />
-          </div>
-          <textarea class='edit-text'
-            placeholder='enter your task text here'
-            defaultValue={tempTodo.text}
-            ref={c => this.text = c}
-          />
-          <div class='edit-buttons'>
-            <button class='btn-edit btn-edit--pink' onClick={this.reset}>Clear all</button>
-            <button class='btn-edit' type='submit'>Submit</button>
-            <button class='btn-edit btn-edit--red' onClick={this.hide}>Cancel</button>
-          </div>
-        </form>
-
-        :
-
-        null
+        editing ? (
+          <form onSubmit={this.handleSubmit} class='modal-edit'>
+            <h3 class='modal-title'>Currently editing task: {tempTodo.name}</h3>
+            <div class='edit-inputs'>
+              <input
+                class='edit-input'
+                type='text'
+                placeholder='task name (required)'
+                defaultValue={tempTodo.name}
+                ref={c => this.name = c} />
+              <input
+                class='edit-input'
+                type='text'
+                placeholder='task time'
+                defaultValue={tempTodo.time}
+                ref={c => this.time = c} />
+              <input
+                class='edit-input'
+                type='text'
+                placeholder='task note'
+                defaultValue={tempTodo.note}
+                ref={c => this.note = c} />
+            </div>
+            <textarea class='edit-text'
+              placeholder='enter your task text here (required)'
+              defaultValue={tempTodo.text}
+              ref={c => this.text = c}
+            />
+            <div class='edit-buttons'>
+              <button class='btn-edit btn-edit--pink' onClick={this.reset}>Clear all</button>
+              <button class='btn-edit' type='submit'>Submit</button>
+              <button class='btn-edit btn-edit--red' onClick={this.hide}>Cancel</button>
+            </div>
+          </form>
+        ) : null
     );
   }
 }

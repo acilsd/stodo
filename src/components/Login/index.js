@@ -6,8 +6,9 @@ import styles from './style.scss';
 
 class Login extends Component {
   static propTypes = {
+    login: PropTypes.func.isRequired,
     isLoggedIn: PropTypes.bool.isRequired,
-
+    restoreSession: PropTypes.func.isRequired,
   }
 
   static contextTypes = {
@@ -15,7 +16,10 @@ class Login extends Component {
   }
 
   componentDidMount() {
-  
+    const sessionObject = JSON.parse(window.localStorage.getItem('user_task'));
+    if (!sessionObject || sessionObject === null) return;
+    this.props.restoreSession(sessionObject);
+    this.context.router.transitionTo('/main');
   }
 
   handleLogIn = (e) => {

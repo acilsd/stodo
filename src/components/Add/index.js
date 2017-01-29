@@ -7,8 +7,7 @@ import styles from './style.scss';
 class Add extends Component {
   static propTypes = {
     addToFirebase: PropTypes.func.isRequired,
-    failure: PropTypes.func.isRequired,
-    todo: PropTypes.array.isRequired
+    todo: PropTypes.array.isRequired,
   };
 
   static contextTypes = {
@@ -17,16 +16,13 @@ class Add extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-
     const data = {
       name: this.name.value.trim(),
       text: this.text.value.trim(),
       time: this.time.value.trim(),
       note: this.note.value.trim(),
     };
-
     const uid = this.props.uid;
-
     if (this.checkValidity(data)) {
       this.props.addToFirebase(data, uid);
       this.context.router.transitionTo('/main');
@@ -36,7 +32,6 @@ class Add extends Component {
   checkValidity = (obj) => {
     if (!obj.name || obj.name.length === 0) return false;
     if (!obj.text || obj.text.length === 0) return false;
-
     return true;
   }
 
@@ -51,11 +46,11 @@ class Add extends Component {
         <h1>Adding new task...</h1>
         <p>Please fill in this form :3</p>
         <div class='inputs'>
-          <input class='modal-input' type='text' ref={c => this.name = c} placeholder='task name'/>
+          <input class='modal-input' type='text' ref={c => this.name = c} placeholder='task name (required)'/>
           <input class='modal-input' type='text' ref={c => this.time = c} placeholder='desired limits'/>
           <input class='modal-input' type='text' ref={c => this.note = c} placeholder='special notes'/>
         </div>
-        <textarea class='modal-text' ref={c => this.text = c} placeholder='enter your task text here'></textarea>
+        <textarea class='modal-text' ref={c => this.text = c} placeholder='enter your task text here (required)'></textarea>
         <div class='buttons'>
           <button class='btn' type='submit'>Submit</button>
           <button class='btn btn--red' onClick={this.revert}>Cancel</button>

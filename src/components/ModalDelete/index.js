@@ -21,15 +21,14 @@ class ModalDelete extends Component {
   render() {
     const { deleting, tempTodo, hideAllModals } = this.props;
     return (
-        deleting ?
-        <div class='modal modal--delete'>
-          <h3 class='modal__title'>Are you sure you want to delete this task?</h3>
-          <p>Task name: <b>{tempTodo.name}</b></p>
-          <button class='btn' onClick={hideAllModals}>no</button>
-          <button class='btn btn--red' onClick={this.handleDelete}>yes</button>
-        </div>
-        :
-        null
+        deleting ? (
+          <div class='modal modal--delete'>
+            <h3 class='modal__title'>Are you sure you want to delete this task?</h3>
+            <p>Task name: <b>{tempTodo.name}</b></p>
+            <button class='btn' onClick={hideAllModals}>no</button>
+            <button class='btn btn--red' onClick={this.handleDelete}>yes</button>
+          </div>
+        ) : null
     );
   }
 }

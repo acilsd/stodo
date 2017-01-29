@@ -18,14 +18,6 @@ export default class Item extends PureComponent  {
     this.props.toggler(this.props.id, status, this.props.uid);
   };
 
-  handleDelete = () => {
-    const box = {
-      id: this.props.id,
-      name: this.props.name
-    };
-    this.props.deleter(box);
-  };
-
   toggleEdit = () => {
     const box = {
       completed: this.props.completed,
@@ -38,16 +30,23 @@ export default class Item extends PureComponent  {
     this.props.editor(box);
   };
 
+  handleDelete = () => {
+    const box = {
+      id: this.props.id,
+      name: this.props.name
+    };
+    this.props.deleter(box);
+  };
+
   render() {
     const { name, text, time, note, completed } = this.props;
-
     return (
       <div class='todo'>
         <h2 class='todo__title'>Task: <b>{name}</b></h2>
         <p class='todo__text'>{text}</p>
         <div class='todo__description'>
           <span class='todo__item'><span>Current status:</span><b>{completed ? 'Done' : 'In process'}</b></span>
-          <span class='todo__item'><span>Time limit:</span><b>{time || 'unlimited'}</b></span>
+          <span class='todo__item'><span>Time limit:</span><b>{time || 'no'}</b></span>
           <span class='todo__item'><span>Special note:</span><b>{note || 'no'}</b></span>
         </div>
         <div class='todo__actions'>

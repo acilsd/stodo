@@ -17,7 +17,7 @@ export default function userReducer(state = initialState, action) {
   case LOG_OUT:
     return {...state, loggedIn: false, uid: '', user: {}};
   case CHECK_SESSION:
-    return state;
+    return {...state, loggedIn: true, uid: action.uid, user: action.user};
   default:
     return state;
   }

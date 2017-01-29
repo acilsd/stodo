@@ -45,14 +45,11 @@ class List extends Component {
             <h1>Greetings, {user.name}</h1>
           </div>
           {
-            filtered
-            ?
+            filtered ?
               <p class='user'>Currently displaying <b>completed</b> tasks only</p>
-            :
-            <p class='user'>Here is your current tasklist</p>
+            : <p class='user'>Here is your current tasklist</p>
           }
           <NavLink class='new-task' to='/add'>New task</NavLink>
-
           <LoadingSpinner isLoading={loading}/>
           {
             content.map((item) => {
@@ -86,6 +83,5 @@ const mapStateToProps = state => ({
   user: state.user.user,
   uid: state.user.uid
 });
-
 
 export default connect(mapStateToProps, actions)(List);

@@ -20,7 +20,7 @@ import {
   editInFirebase,
   deleteFromFirebase } from './actions-firebase';
 
-import { login, logout, checkPreviousSession } from './actions-session';
+import { login, logout, restoreSession } from './actions-session';
 
 export {
   addTodo,
@@ -40,5 +40,5 @@ export {
   deleteFromFirebase,
   login,
   logout,
-  checkPreviousSession
+  restoreSession
 };
