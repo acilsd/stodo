@@ -12,10 +12,7 @@ export const HIDE_MODALS = 'HIDE_MODALS';
 
 export const LOG_IN = 'LOG_IN';
 export const LOG_OUT = 'LOG_OUT';
+export const CHECK_SESSION = 'CHECK_SESSION';
 
 export const LOADING = 'LOADING';
 export const FAIL = 'FAIL';
-
-export const TEST1 = 'TEST1';
-export const TEST2 = 'TEST2';
-export const TEST3 = 'TEST3';

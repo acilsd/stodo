@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon public/server.js",
     "build": "set NODE_ENV=production&&webpack",
-    "wds": "webpack-dev-server --debug --content-base build/ --output-pathinfo --watch --colors --inline --port 8080",
+    "wds": "webpack-dev-server --debug --content-base public/ --output-pathinfo --watch --colors --inline --port 8080",
     "test": "mocha --compilers js:babel-core/register --require ./test/setup.js 'src/**/spec.js'"
   },
   "author": "acilsd",

@@ -9,9 +9,9 @@ import {
   deleteTodo
 } from './actions-tasks';
 
-export const fetchTasks = () => {
+export const fetchTasks = (uid) => {
   return (dispatch) => {
-    const dataRef = fbRef.child('tasks');
+    const dataRef = fbRef.child(`users/${uid}/tasks`);
     dispatch({
       type: types.LOADING
     });
@@ -28,7 +28,7 @@ export const fetchTasks = () => {
   };
 };
 
-export const addToFirebase = (data) => {
+export const addToFirebase = (data, uid) => {
   return (dispatch) => {
     const newTask = {
       name: data.name,
@@ -37,7 +37,7 @@ export const addToFirebase = (data) => {
       note: data.note,
       completed: false
     };
-    const taskRef = fbRef.child('tasks').push(newTask);
+    const taskRef = fbRef.child(`users/${uid}/tasks`).push(newTask);
     return taskRef.then(() => {
       dispatch(addTodo({
         ...newTask,
@@ -47,31 +47,30 @@ export const addToFirebase = (data) => {
   };
 };
 
-export const editInFirebase = (data) => {
+export const editInFirebase = (data, uid) => {
   return (dispatch) => {
-    const taskRef = fbRef.child('tasks');
-    return taskRef.then(() => {
-      dispatch(editTodo({
-        id: taskRef.key
-      }));
+    const { completed, id, name, note, text, time } = data;
+    const taskRef = fbRef.child(`users/${uid}/tasks/${id}`);
+    const updates = { completed, name, note, text, time };
+    return taskRef.update(updates).then(() => {
+      dispatch(editTodo({...updates, id}));
     }), err => console.error(err);
   };
 };
 
-export const deleteFromFirebase = (data) => {
+export const deleteFromFirebase = (uid, id) => {
   return (dispatch) => {
-    const taskRef = fbRef.child('tasks');
-    return taskRef.then(() => {
-      dispatch(deleteTodo({
-        id: taskRef.key
-      }));
+    const taskRef = fbRef.child(`users/${uid}/tasks/${id}`);
+    console.log(id);
+    return taskRef.remove().then(() => {
+      dispatch(deleteTodo(id));
     }), err => console.error(err);
   };
 };
 
-export const toggleFbStatus = (id, status) => {
+export const toggleFbStatus = (id, status, uid) => {
   return (dispatch) => {
-    const taskRef = fbRef.child(`tasks/${id}`);
+    const taskRef = fbRef.child(`users/${uid}/tasks/${id}`);
     const updates = { completed: status };
     return taskRef.update(updates).then(() => {
       dispatch(completeTodo(id, status));

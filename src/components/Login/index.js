@@ -6,7 +6,8 @@ import styles from './style.scss';
 
 class Login extends Component {
   static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired
+    isLoggedIn: PropTypes.bool.isRequired,
+
   }
 
   static contextTypes = {
@@ -14,7 +15,7 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (this.props.isLoggedIn) this.context.router.transitionTo('/main');
+  
   }
 
   handleLogIn = (e) => {

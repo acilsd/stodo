@@ -6,7 +6,7 @@ import style from './style.scss';
 
 class ModalEdit extends PureComponent {
   static propTypes = {
-    editTodo: PropTypes.func.isRequired,
+    editInFirebase: PropTypes.func.isRequired,
     hideAllModals: PropTypes.func.isRequired,
     editing: PropTypes.bool.isRequired,
     tempTodo: PropTypes.object.isRequired
@@ -15,8 +15,9 @@ class ModalEdit extends PureComponent {
   handleSubmit = (e) => {
     e.preventDefault();
     const toEdit = this.collectValues();
-    if (this.checkValidity(toEdit)) {
-      this.props.editTodo(toEdit);
+    const uid = this.props.uid;
+    if (this.checkValidity(toEdit)) {      
+      this.props.editInFirebase(toEdit, uid);
       this.props.hideAllModals();
     }
   }
@@ -103,7 +104,8 @@ class ModalEdit extends PureComponent {
 
 const mapStateToProps = state => ({
   editing: state.modals.editing,
-  tempTodo: state.modals.tempTodo
+  tempTodo: state.modals.tempTodo,
+  uid: state.user.uid
 });
 
 export default connect(mapStateToProps, actions)(ModalEdit);

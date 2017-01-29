@@ -10,11 +10,12 @@ export default class Item extends PureComponent  {
     text: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
+    uid: PropTypes.string.isRequired,
   }
 
   handleToggle = () => {
     const status = !this.props.completed;
-    this.props.toggler(this.props.id, status);
+    this.props.toggler(this.props.id, status, this.props.uid);
   };
 
   handleDelete = () => {

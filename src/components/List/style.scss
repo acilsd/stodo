@@ -8,6 +8,18 @@
   text-align: center;
 }
 
+.todo-header {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 150px;
+    border: 2px solid rgba(36, 209, 59, 0.3);
+    height: auto;
+  }
+}
+
 h1 {
   text-transform: uppercase;
   margin: 10px 0;

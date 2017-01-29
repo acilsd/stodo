@@ -13,9 +13,14 @@ import {
   failure
 } from './actions-tasks';
 
-import { addToFirebase, toggleFbStatus, fetchTasks } from './actions-firebase';
+import {
+  addToFirebase,
+  toggleFbStatus,
+  fetchTasks,
+  editInFirebase,
+  deleteFromFirebase } from './actions-firebase';
 
-import { login, logout } from './actions-session';
+import { login, logout, checkPreviousSession } from './actions-session';
 
 export {
   addTodo,
@@ -31,6 +36,9 @@ export {
   addToFirebase,
   toggleFbStatus,
   fetchTasks,
+  editInFirebase,
+  deleteFromFirebase,
   login,
-  logout
+  logout,
+  checkPreviousSession
 };

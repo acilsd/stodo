@@ -25,8 +25,10 @@ class Add extends Component {
       note: this.note.value.trim(),
     };
 
+    const uid = this.props.uid;
+
     if (this.checkValidity(data)) {
-      this.props.addToFirebase(data);
+      this.props.addToFirebase(data, uid);
       this.context.router.transitionTo('/main');
     }
   };
@@ -64,7 +66,8 @@ class Add extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo.todos
+  todo: state.todo.todos,
+  uid: state.user.uid
 });
 
 export default connect(mapStateToProps, actions)(Add);

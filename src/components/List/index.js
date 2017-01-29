@@ -16,10 +16,12 @@ class List extends Component {
     modalEdit: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     search: PropTypes.string,
+    user: PropTypes.object,
   }
 
   componentDidMount() {
-    this.props.fetchTasks();
+    const uid = this.props.uid;
+    this.props.fetchTasks(uid);
   }
 
   makeRealContent = () => {
@@ -33,11 +35,15 @@ class List extends Component {
   }
 
   render() {
-    const { toggleFbStatus, modalDelete, modalEdit, filtered, loading } = this.props;
+    const { toggleFbStatus, modalDelete, modalEdit, filtered, loading, user } = this.props;
     const content = this.makeRealContent();
+    const uid = this.props.uid;
     return (
         <div class='todo-list'>
-          <h1>Greetings, User</h1>
+          <div class='todo-header'>
+            <img src={user.img}/>
+            <h1>Greetings, {user.name}</h1>
+          </div>
           {
             filtered
             ?
@@ -45,7 +51,6 @@ class List extends Component {
             :
             <p class='user'>Here is your current tasklist</p>
           }
-
           <NavLink class='new-task' to='/add'>New task</NavLink>
 
           <LoadingSpinner isLoading={loading}/>
@@ -63,6 +68,7 @@ class List extends Component {
                   toggler={toggleFbStatus}
                   deleter={modalDelete}
                   editor={modalEdit}
+                  uid={uid}
                 />
               );
             })
@@ -76,7 +82,9 @@ const mapStateToProps = state => ({
   todo: state.todo.todos,
   filtered: state.todo.filtered,
   search: state.todo.search,
-  loading: state.todo.loading
+  loading: state.todo.loading,
+  user: state.user.user,
+  uid: state.user.uid
 });
 
 

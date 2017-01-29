@@ -9,12 +9,12 @@ class ModalDelete extends Component {
   static propTypes = {
     tempTodo: PropTypes.object.isRequired,
     deleting: PropTypes.bool.isRequired,
-    deleteTodo: PropTypes.func.isRequired,
+    deleteFromFirebase: PropTypes.func.isRequired,
     hideAllModals: PropTypes.func.isRequired,
   }
 
   handleDelete = () => {
-    this.props.deleteTodo(this.props.tempTodo.id);
+    this.props.deleteFromFirebase(this.props.uid, this.props.tempTodo.id);
     this.props.hideAllModals();
   }
 
@@ -36,7 +36,8 @@ class ModalDelete extends Component {
 
 const mapStateToProps = state => ({
   deleting: state.modals.deleting,
-  tempTodo: state.modals.tempTodo
+  tempTodo: state.modals.tempTodo,
+  uid: state.user.uid
 });
 
 export default connect(mapStateToProps, actions)(ModalDelete);
