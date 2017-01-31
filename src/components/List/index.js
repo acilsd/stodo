@@ -64,7 +64,7 @@ class List extends Component {
           {
             filtered ?
               <p class='user'>Currently displaying <b>completed</b> tasks only</p>
-            : <p class='user'>Currently displaying <b>completed</b> tasks only</p>
+            : <p class='user'>Displaying <b>all</b> tasks</p>
           }
           {
             filtered
