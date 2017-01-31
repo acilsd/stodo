@@ -32,8 +32,12 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.handleLogIn}>Login</button>
+      <div class='login'>
+        <div class='content'>
+          <h1>Yet another todo-app</h1>
+          <button onClick={this.handleLogIn}>Login with github</button>
+          <a href='https://github.com/acilsd/stodo' target='_blank'>Sources</a>
+        </div>
       </div>
     );
   }
