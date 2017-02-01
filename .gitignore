@@ -1,7 +1,7 @@
 node_modules
 npm-debug.log
-public/bundle.js
-public/bundle.js.gz
+public/app.bundle.js
+public/app.bundle.js.gz
 public/vendor.bundle.js
 public/vendor.bundle.js.gz
 *.log
