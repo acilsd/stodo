@@ -78,7 +78,7 @@ module.exports = function(env) {
     context: srcPath,
     entry: {
       js: './index.js',
-      vendor: ['react', "react-dom", "react-router", "firebase"]
+      vendor: ['react', 'react-dom', 'firebase']
     },
     output: {
       path: buildPath,
@@ -151,8 +151,8 @@ module.exports = function(env) {
       historyApiFallback: true,
       port: 8080,
       compress: TO_PROD,
-      inline: !TO_PROD,
-      hot: !TO_PROD,
+      inline: true,
+      hot: true,
       stats: {
         assets: true,
         children: false,

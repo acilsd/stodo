@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match, Miss } from 'react-router';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -12,18 +12,17 @@ import ProtectedRoute from './redirect';
 
 const AppRoutes = ({isLoggedIn}) => {
   return (
-    <div>
-      <Match pattern='/' exactly component={Login}/>
-      <ProtectedRoute pattern='/main' status={isLoggedIn} component={Main} />
-      <ProtectedRoute pattern='/add' status={isLoggedIn} component={Add} />
-      <Miss component={ErrorPage}/>
-    </div>
+    <Switch>
+      <Route exact path='/' component={Login}/>
+      <ProtectedRoute path='/main' status={isLoggedIn} component={Main} />
+      <ProtectedRoute path='/add' status={isLoggedIn} component={Add} />
+      <Route component={ErrorPage}/>
+    </Switch>
   );
 };
 
 const mapStateToProps = state => ({
   isLoggedIn: state.user.loggedIn
 });
-
 
 export default connect(mapStateToProps, actions)(AppRoutes);

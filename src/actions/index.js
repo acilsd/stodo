@@ -1,5 +1,3 @@
-import * as types from '../constants/';
-
 import {
   addTodo,
   searchTodo,

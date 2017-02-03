@@ -36,7 +36,7 @@ class Search extends Component {
   handleLogOut = (e) => {
     e.preventDefault();
     this.props.logout().then(() => {
-      this.context.router.transitionTo('/');
+      this.context.router.push('/');
     });
   }
 

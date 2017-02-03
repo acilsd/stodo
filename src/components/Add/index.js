@@ -31,7 +31,7 @@ class Add extends Component {
     const valid = checkValidity(data, this.props.validateThis);
     if (valid) {
       this.props.addToFirebase(data, uid);
-      this.context.router.transitionTo('/main');
+      this.context.router.push('/main');
       this.props.deValidate();
     }
   };
@@ -39,7 +39,7 @@ class Add extends Component {
   revert = (e) => {
     e.preventDefault();
     this.props.deValidate();
-    this.context.router.transitionTo('/main');
+    this.context.router.push('/main');
   }
 
   render() {

@@ -19,14 +19,14 @@ class Login extends Component {
     const sessionObject = JSON.parse(window.localStorage.getItem('user_task'));
     if (!sessionObject || sessionObject === null) return;
     this.props.restoreSession(sessionObject);
-    this.context.router.transitionTo('/main');
+    this.context.router.push('/main');
   }
 
   handleLogIn = (e) => {
     e.preventDefault();
     this.props.login().then(() => {
       const status = this.props.isLoggedIn;
-      if (status) this.context.router.transitionTo('/main');
+      if (status) this.context.router.push('/main');
     });
   }
 

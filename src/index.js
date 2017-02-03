@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import configureStore from './store/configureStore';
 
@@ -12,10 +12,10 @@ const store = configureStore();
 const container = document.getElementById('container');
 
 render(
-  <BrowserRouter>
+  <Router>
     <Provider store={store}>
       <App />
     </Provider>
-  </BrowserRouter>,
+  </Router>,
   container
 );
