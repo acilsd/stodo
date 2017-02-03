@@ -22,26 +22,3 @@ Run:
 *  `$ install`
 *  `$ run wds`
 *  `$ run build`
-*  `$ run test`
-
-
-{
-  "plugins": [
-    "react-hot-loader/babel",
-    "transform-class-properties",
-    "react-html-attrs",
-    "transform-decorators-legacy"
-  ],
-  "presets": [
-    ["es2015", { "modules": false }],
-    "stage-0",
-    "react"
-  ],
-  "env": {
-    "development": {
-      "presets": [
-        "react-hmre"
-      ]
-    }
-  }
-}
