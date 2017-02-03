@@ -77,12 +77,25 @@ module.exports = function(env) {
     devtool: TO_PROD ? 'null' : 'cheap-inline-module-source-map',
     context: srcPath,
     entry: {
-      js: './index.js',
-      vendor: ['react', 'react-dom', 'firebase']
+      app: [
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        './index.js'
+      ],
+      vendor: [
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        'react',
+        'react-dom',
+        'firebase'
+      ]
     },
     output: {
       path: buildPath,
       filename: 'app.bundle.js',
+      publicPath: './public'
     },
     module: {
       rules: [
@@ -148,6 +161,7 @@ module.exports = function(env) {
     },
     devServer: {
       contentBase: './public',
+      publicPath: './public',
       historyApiFallback: true,
       port: 8080,
       compress: TO_PROD,
