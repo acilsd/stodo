@@ -6,7 +6,6 @@ What's good:
 *  React-router v4
 *  Redux
 *  Firebase integration
-*  Unit-tests (Jest+Enzyme)
 *  Webpack 2
 
 What's bad:
