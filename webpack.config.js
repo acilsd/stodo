@@ -80,13 +80,11 @@ module.exports = function(env) {
       app: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client?http://localhost:8080',
-        'webpack/hot/only-dev-server',
         './index.js'
       ],
       vendor: [
         'react-hot-loader/patch',
         'webpack-hot-middleware/client?http://localhost:8080',
-        'webpack/hot/only-dev-server',
         'react',
         'react-dom',
         'firebase'
@@ -95,7 +93,7 @@ module.exports = function(env) {
     output: {
       path: buildPath,
       filename: 'app.bundle.js',
-      publicPath: './public'
+      publicPath: '/'
     },
     module: {
       rules: [
@@ -161,7 +159,7 @@ module.exports = function(env) {
     },
     devServer: {
       contentBase: './public',
-      publicPath: './public',
+      publicPath: '/',
       historyApiFallback: true,
       port: 8080,
       compress: TO_PROD,
