@@ -5,13 +5,13 @@ What's good:
 *  React
 *  React-router v4
 *  Redux
-*  Firebase integration
 *  Webpack 2
+*  Firebase
+
 
 What's bad:
 
 *  Redux-thunks mess => i should really use sagas
-*  No typeChecking via flow (well this app does not need no)
 *  Styles mess
 *  Poor design (who cares?)
 *  Firebase
