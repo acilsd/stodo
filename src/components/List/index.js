@@ -77,6 +77,7 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
+  // todo: state.todo.todos.filter(item => item.name.toLowerCase().includes(state.todo.search))
   todo: state.todo.todos,
   completed: state.todo.completed,
   filtered: state.todo.filtered,

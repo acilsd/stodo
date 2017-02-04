@@ -78,13 +78,11 @@ module.exports = function(env) {
     context: srcPath,
     entry: {
       app: [
-        'react-hot-loader/patch',
-        'webpack-hot-middleware/client?http://localhost:8080',
+        'react-hot-loader/patch',        
         './index.js'
       ],
       vendor: [
         'react-hot-loader/patch',
-        'webpack-hot-middleware/client?http://localhost:8080',
         'react',
         'react-dom',
         'firebase'

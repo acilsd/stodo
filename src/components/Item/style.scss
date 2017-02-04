@@ -48,6 +48,8 @@
     & b {
       text-transform: uppercase;
       font-size: 0.8em;
+      word-break: break-all;
+      padding: 5px;
     }
   }
   &__actions {
