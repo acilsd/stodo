@@ -27,11 +27,9 @@ class List extends Component {
 
   makeRealContent = (arr) => {
     const { toggleFbStatus, modalDelete, modalEdit, uid, search } = this.props;
-    const box = (search.length > 0)
-          ? arr.filter((item) => {
-            return item.name.toLowerCase().indexOf(search) > -1;
-          })
-          : arr;
+    const box = arr.filter((item) => {
+      return item.name.toLowerCase().indexOf(search) > -1;
+    });
     return box.map((item) => {
       return (
         <Item
@@ -77,7 +75,6 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  // todo: state.todo.todos.filter(item => item.name.toLowerCase().includes(state.todo.search))
   todo: state.todo.todos,
   completed: state.todo.completed,
   filtered: state.todo.filtered,

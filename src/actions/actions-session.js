@@ -2,33 +2,13 @@
 import { LOG_IN, LOG_OUT, CHECK_SESSION } from '../constants/';
 import { signin, signOut, ghProvider } from '../firebase';
 
-export const restoreSession = (obj) => {
-  return (dispatch) => {
-    return dispatch(setUserData(obj));
-  };
-};
-
-const setUserData = (obj) => {
-  return {
-    type: CHECK_SESSION,
-    uid: obj.uid,
-    user: { name: obj.name, img: obj.img }
-  };
-};
-
 export const login = () => {
   return (dispatch) => {
     return signin.signInWithPopup(ghProvider).then((res) => {
       const { displayName, photoURL, uid } = res.user;
-      const data = {
-        name: displayName,
-        img: photoURL
-      };
-      window.localStorage.setItem(
-        'user_task', JSON.stringify({...data, uid})
-      );
-      dispatch(storeSession(
-        uid, data));
+      const data = { name: displayName, img: photoURL };
+      window.localStorage.setItem('user_task', JSON.stringify({ ...data, uid }));
+      dispatch(storeSession(uid, data));
     }, err => console.error(err));
   };
 };
@@ -42,17 +22,10 @@ export const logout = () => {
   };
 };
 
-const storeSession = (uid, obj) => {
-  return {
-    type: LOG_IN,
-    uid,
-    data: obj
-  };
-};
+const storeSession = (uid, obj) => ({ type: LOG_IN, uid, data: obj });
 
+const clearSession = () => ({ type: LOG_OUT });
 
-const clearSession = () => {
-  return {
-    type: LOG_OUT
-  };
-};
+export const restoreSession = (obj) => (dispatch) => dispatch(setUserData(obj));
+
+const setUserData = (obj) => ({ type: CHECK_SESSION, uid: obj.uid, user: { name: obj.name, img: obj.img } });
