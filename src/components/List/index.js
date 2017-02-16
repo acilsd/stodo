@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Item from '../Item';
 import { NavLink } from '../Links';
 import LoadingSpinner from '../LoadingSpinner';
+import TaskManager from '../TaskManager/';
 import * as actions from '../../actions';
 import styles from './style.scss';
 
@@ -57,7 +58,7 @@ class List extends Component {
             <img src={user.img}/>
             <h1>Greetings, {user.name}</h1>
           </div>
-          <NavLink class='new-task' to='/add'>New task</NavLink>
+          <TaskManager />
           <LoadingSpinner isLoading={loading}/>
           {
             filtered ?

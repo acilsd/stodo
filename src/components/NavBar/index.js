@@ -1,15 +1,34 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-const NavBar = () => {
-  return (
-    <div class='navbar'>
-      <Link to='/'>Main Page</Link>
-      <Link to='/main'>Tasks</Link>
-      <Link to='/add'>Add</Link>
-      <Link to='/test'>Test!</Link>
-    </div>
-  );
-};
+import { MenuLink } from '../Links';
 
-export default NavBar;
+import * as actions from '../../actions';
+import styles from './style.scss';
+
+class NavBar extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired
+  }
+
+  handleLogOut = (e) => {
+    e.preventDefault();
+    this.props.logout().then(() => {
+      this.context.router.push('/');
+    });
+  }
+
+  render() {
+    return (
+      <div class='navbar'>
+        <div class='navbar__links'>
+          <MenuLink activeOnlyWhenExact={true} to='/main' label="Home"/>
+          <MenuLink activeOnlyWhenExact={true} to='/add' label="Add new task"/>
+        </div>
+        <button onClick={this.handleLogOut} class='lgt'>Logout</button>
+      </div>
+    );
+  }
+}
+
+export default connect(null, actions)(NavBar);

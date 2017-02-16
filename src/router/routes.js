@@ -8,14 +8,12 @@ import Main from '../components/Main/';
 import Add from '../components/Add/';
 import ErrorPage from '../components/Error';
 import Test from '../components/Test';
-import NavBar from '../components/NavBar';
 
 import ProtectedRoute from './redirect';
 
 const AppRoutes = ({isLoggedIn}) => {
   return (
     <div>
-      <NavBar />
       <Switch>
         <Route exact path='/' component={Login}/>
         <ProtectedRoute path='/main' status={isLoggedIn} component={Main} />
