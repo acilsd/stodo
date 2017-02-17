@@ -1,4 +1,5 @@
 import React, { PureComponent , PropTypes } from 'react';
+import moment from 'moment';
 
 import styles from './style.scss';
 
@@ -25,7 +26,7 @@ export default class Item extends PureComponent  {
       name: this.props.name,
       text: this.props.text,
       note: this.props.note,
-      time: this.props.time
+      time: moment(JSON.parse(this.props.time))
     };
     this.props.editor(box);
   };
@@ -40,13 +41,14 @@ export default class Item extends PureComponent  {
 
   render() {
     const { name, text, time, note, completed } = this.props;
+    const formattedDate = moment(JSON.parse(time)).format('DD-MM-YYYY');
     return (
       <div class='todo'>
         <h2 class='todo__title'>Task: <b>{name}</b></h2>
         <p class='todo__text'>{text}</p>
         <div class='todo__description'>
           <span class='todo__item'><span>Current status:</span><b>{completed ? 'Done' : 'In process'}</b></span>
-          <span class='todo__item'><span>Time limit:</span><b>{time || 'no'}</b></span>
+          <span class='todo__item'><span>Time limit:</span><b>{formattedDate || 'no'}</b></span>
           <span class='todo__item'><span>Special note:</span><b>{note || 'no'}</b></span>
         </div>
         <div class='todo__actions'>

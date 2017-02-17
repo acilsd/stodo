@@ -21,7 +21,7 @@ class ModalEdit extends PureComponent {
     deValidate: PropTypes.func.isRequired,
   }
   componentDidMount() {
-    
+
   }
   handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ class ModalEdit extends PureComponent {
       name: this.name.value.trim(),
       note: this.note.value.trim(),
       text: this.text.value.trim(),
-      time: this.props.time.format('DD-MM-YYYY')
+      time: this.props.time
     };
     return box;
   }
@@ -80,7 +80,7 @@ class ModalEdit extends PureComponent {
                   defaultValue={tempTodo.name}
                   ref={c => this.name = c}
                   onChange={() => this.props.deValidate()}/>
-                <DateInput />
+                <DateInput startDate={tempTodo.time}/>
                 <input
                   class='edit-input'
                   type='text'

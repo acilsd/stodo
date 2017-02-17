@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import moment from 'moment';
 
 import * as actions from '../../actions';
 import { checkValidity } from '../../utils';
@@ -27,7 +28,7 @@ class Add extends Component {
       name: this.name.value.trim(),
       text: this.text.value.trim(),
       note: this.note.value.trim(),
-      time: this.props.time.format('DD-MM-YYYY')
+      time: this.props.time
     };
     const uid = this.props.uid;
     const valid = checkValidity(data, this.props.validateThis);
@@ -45,6 +46,7 @@ class Add extends Component {
   }
 
   render() {
+    const startDate = moment();
     const { noName, noText } = this.props.errors;
     const nameErr = classNames({invalid: !noName});
     const textErr = classNames({invalid: !noText});
@@ -59,7 +61,7 @@ class Add extends Component {
             placeholder='task name (required!)'
             onChange={() => this.props.deValidate()}
           />
-          <DateInput />
+          <DateInput startDate={startDate} />
           <input class='modal-input' type='text' ref={c => this.note = c} placeholder='special notes'/>
         </div>
         <textarea

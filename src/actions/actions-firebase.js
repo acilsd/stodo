@@ -33,7 +33,7 @@ export const addToFirebase = (data, uid) => {
     const newTask = {
       name: data.name,
       text: data.text,
-      time: data.time,
+      time: JSON.stringify(data.time),
       note: data.note,
       completed: false
     };
@@ -49,7 +49,9 @@ export const addToFirebase = (data, uid) => {
 
 export const editInFirebase = (data, uid) => {
   return (dispatch) => {
-    const { completed, id, name, note, text, time } = data;
+    const { completed, id, name, note, text } = data;
+    const time = JSON.stringify(data.time);
+
     const taskRef = fbRef.child(`users/${uid}/tasks/${id}`);
     const updates = { completed, name, note, text, time };
     return taskRef.update(updates).then(() => {

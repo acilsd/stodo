@@ -9,16 +9,17 @@ class DateInput extends Component {
   static propTypes = {
     setTaskTime: PropTypes.func.isRequired,
     time: PropTypes.any.isRequired,
+    startDate: PropTypes.any.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      startDate: this.props.time || null
+      startDate: this.props.startDate
     };
   }
 
-  handleChange = (date) => {    
+  handleChange = (date) => {
     this.props.setTaskTime(date);
     this.setState({
       startDate: date
