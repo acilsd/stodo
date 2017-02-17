@@ -15,6 +15,8 @@ export const addTodo = (data) => {
   };
 };
 
+export const setTaskTime = (time) => ({ type: types.SET_TIME, payload: time });
+
 export const searchTodo = (data) => ({ type: types.SEARCH_TODO, payload: data });
 
 export const filterDone = (status) => ({ type: types.FILTER_TODO, payload: status });

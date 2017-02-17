@@ -1,7 +1,9 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
+import moment from 'moment';
 
+import DateInput from '../DateInput';
 import { checkValidity } from '../../utils';
 import * as actions from '../../actions';
 import style from './style.scss';
@@ -14,10 +16,13 @@ class ModalEdit extends PureComponent {
     tempTodo: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired,
     uid: PropTypes.string.isRequired,
+    time: PropTypes.any.isRequired,
     validateThis: PropTypes.func.isRequired,
     deValidate: PropTypes.func.isRequired,
   }
-
+  componentDidMount() {
+    
+  }
   handleSubmit = (e) => {
     e.preventDefault();
     const toEdit = this.collectValues();
@@ -39,7 +44,7 @@ class ModalEdit extends PureComponent {
       name: this.name.value.trim(),
       note: this.note.value.trim(),
       text: this.text.value.trim(),
-      time: this.time.value.trim()
+      time: this.props.time.format('DD-MM-YYYY')
     };
     return box;
   }
@@ -47,7 +52,6 @@ class ModalEdit extends PureComponent {
   reset = (e) => {
     this.name.value = '';
     this.note.value = '';
-    this.time.value = '';
     this.text.value = '';
   }
 
@@ -76,12 +80,7 @@ class ModalEdit extends PureComponent {
                   defaultValue={tempTodo.name}
                   ref={c => this.name = c}
                   onChange={() => this.props.deValidate()}/>
-                <input
-                  class='edit-input'
-                  type='text'
-                  placeholder='task time'
-                  defaultValue={tempTodo.time}
-                  ref={c => this.time = c} />
+                <DateInput />
                 <input
                   class='edit-input'
                   type='text'
@@ -111,6 +110,7 @@ class ModalEdit extends PureComponent {
 
 const mapStateToProps = state => ({
   editing: state.modals.editing,
+  time: state.todo.time,
   tempTodo: state.modals.tempTodo,
   uid: state.user.uid,
   errors: state.todo.errors

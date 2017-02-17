@@ -39,6 +39,17 @@
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+  .react-datepicker__input-container {
+    width: 100%;
+    input {
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px 10px;
+      text-align: center;
+      border: none;
+      outline: 1px solid rgba(36, 209, 59, 0.5);
+    }
+  }
 }
 
 .modal-title {

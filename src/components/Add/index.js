@@ -4,12 +4,14 @@ import classNames from 'classnames';
 
 import * as actions from '../../actions';
 import { checkValidity } from '../../utils';
+import DateInput from '../DateInput';
 import styles from './style.scss';
 
 class Add extends Component {
   static propTypes = {
     addToFirebase: PropTypes.func.isRequired,
     todo: PropTypes.array.isRequired,
+    time: PropTypes.any.isRequired,
     errors: PropTypes.object.isRequired,
     validateThis: PropTypes.func.isRequired,
     deValidate: PropTypes.func.isRequired,
@@ -24,8 +26,8 @@ class Add extends Component {
     const data = {
       name: this.name.value.trim(),
       text: this.text.value.trim(),
-      time: this.time.value.trim(),
       note: this.note.value.trim(),
+      time: this.props.time.format('DD-MM-YYYY')
     };
     const uid = this.props.uid;
     const valid = checkValidity(data, this.props.validateThis);
@@ -57,7 +59,7 @@ class Add extends Component {
             placeholder='task name (required!)'
             onChange={() => this.props.deValidate()}
           />
-          <input class='modal-input' type='text' ref={c => this.time = c} placeholder='desired limits'/>
+          <DateInput />
           <input class='modal-input' type='text' ref={c => this.note = c} placeholder='special notes'/>
         </div>
         <textarea
@@ -77,6 +79,7 @@ class Add extends Component {
 
 const mapStateToProps = state => ({
   todo: state.todo.todos,
+  time: state.todo.time,
   uid: state.user.uid,
   errors: state.todo.errors
 });

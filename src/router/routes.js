@@ -7,7 +7,7 @@ import Login from '../components/Login';
 import Main from '../components/Main/';
 import Add from '../components/Add/';
 import ErrorPage from '../components/Error';
-import Test from '../components/Test';
+import DateInput from '../components/DateInput';
 
 import ProtectedRoute from './redirect';
 
@@ -18,7 +18,7 @@ const AppRoutes = ({isLoggedIn}) => {
         <Route exact path='/' component={Login}/>
         <ProtectedRoute path='/main' status={isLoggedIn} component={Main} />
         <ProtectedRoute path='/add' status={isLoggedIn} component={Add} />
-        <Route path='/test' component={Test}/>
+        <Route path='/test' component={DateInput}/>
         <Route component={ErrorPage}/>
       </Switch>
     </div>

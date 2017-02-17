@@ -9,7 +9,8 @@ import {
   modalEdit,
   hideAllModals,
   validateThis,
-  deValidate
+  deValidate,
+  setTaskTime
 } from './actions-tasks';
 
 import {
@@ -33,6 +34,7 @@ export {
   hideAllModals,
   validateThis,
   deValidate,
+  setTaskTime,
   addToFirebase,
   toggleFbStatus,
   fetchTasks,

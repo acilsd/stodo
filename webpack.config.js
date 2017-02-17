@@ -78,7 +78,7 @@ module.exports = function(env) {
     context: srcPath,
     entry: {
       app: [
-        'react-hot-loader/patch',        
+        'react-hot-loader/patch',
         './index.js'
       ],
       vendor: [
@@ -118,8 +118,7 @@ module.exports = function(env) {
           }
         },
         {
-          test: /\.css$/,
-          exclude: /node_modules/,
+          test: /\.css$/,          
           use: [ 'style-loader', 'css-loader',
             {
               loader: 'postcss-loader',

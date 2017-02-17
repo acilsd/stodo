@@ -6,6 +6,7 @@ import {
   DELETE_TODO,
   COMPLETE_TODO,
   EDIT_TODO,
+  SET_TIME,
   LOADING,
   FAIL,
   UNFAIL
@@ -14,6 +15,7 @@ import {
 const initialState = {
   loading: false,
   filtered: false,
+  time: '',
   search: '',
   todos: [],
   completed: [],
@@ -42,6 +44,8 @@ export default function todoReducer(state = initialState, action) {
     return {...state, todos: deleteFromState(state.todos, action.payload)};
   case EDIT_TODO:
     return {...state, todos: editTodo(state.todos, action.payload)};
+  case SET_TIME:
+    return {...state, time: action.payload};  
   case FAIL:
     return {...state, errors: Object.assign({}, state.errors, action.payload)};
   case UNFAIL:
