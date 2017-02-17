@@ -1,7 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import moment from 'moment';
+import moment from 'moment/moment';
 
 import DateInput from '../DateInput';
 import { checkValidity } from '../../utils';

@@ -8,7 +8,6 @@ import NavBar from '../NavBar';
 const Main = () => {
   return (
     <div>
-      <NavBar />
       <List />
       <ModalDelete />
       <ModalEdit />

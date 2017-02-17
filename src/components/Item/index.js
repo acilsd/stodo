@@ -1,5 +1,5 @@
 import React, { PureComponent , PropTypes } from 'react';
-import moment from 'moment';
+import moment from 'moment/moment';
 
 import styles from './style.scss';
 

@@ -22,8 +22,10 @@ class NavBar extends Component {
     return (
       <div class='navbar'>
         <div class='navbar__links'>
-          <MenuLink activeOnlyWhenExact={true} to='/main' label="Home"/>
+          <MenuLink activeOnlyWhenExact={true} to='/' label="Main Page"/>
+          <MenuLink activeOnlyWhenExact={true} to='/main' label="Task list"/>
           <MenuLink activeOnlyWhenExact={true} to='/add' label="Add new task"/>
+          <MenuLink activeOnlyWhenExact={true} to='/thisroutdoesnotexist' label="Error page"/>
         </div>
         <button onClick={this.handleLogOut} class='lgt'>Logout</button>
       </div>

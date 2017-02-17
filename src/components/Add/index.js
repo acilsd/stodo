@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
-import moment from 'moment';
+import moment from 'moment/moment';
 
 import * as actions from '../../actions';
 import { checkValidity } from '../../utils';

@@ -30,7 +30,7 @@ module.exports = function(env) {
       minChunks: Infinity,
       filename: 'vendor.bundle.js'
     }),
-    //new BundleAnalyzerPlugin()
+  //  new BundleAnalyzerPlugin()
   ];
 
   if (TO_PROD) {
@@ -118,7 +118,7 @@ module.exports = function(env) {
           }
         },
         {
-          test: /\.css$/,          
+          test: /\.css$/,
           use: [ 'style-loader', 'css-loader',
             {
               loader: 'postcss-loader',

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import DatePicker from 'react-datepicker';
-import moment from 'moment';
+import moment from 'moment/moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 class DateInput extends Component {
