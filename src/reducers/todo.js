@@ -45,7 +45,7 @@ export default function todoReducer(state = initialState, action) {
   case EDIT_TODO:
     return {...state, todos: editTodo(state.todos, action.payload)};
   case SET_TIME:
-    return {...state, time: action.payload};  
+    return {...state, time: action.payload};
   case FAIL:
     return {...state, errors: Object.assign({}, state.errors, action.payload)};
   case UNFAIL:

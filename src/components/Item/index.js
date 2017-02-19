@@ -3,6 +3,8 @@ import moment from 'moment/moment';
 
 import styles from './style.scss';
 
+const def = 'no';
+
 export default class Item extends PureComponent  {
   static propTypes = {
     toggler: PropTypes.func.isRequired,
@@ -48,8 +50,8 @@ export default class Item extends PureComponent  {
         <p class='todo__text'>{text}</p>
         <div class='todo__description'>
           <span class='todo__item'><span>Current status:</span><b>{completed ? 'Done' : 'In process'}</b></span>
-          <span class='todo__item'><span>Time limit:</span><b>{formattedDate || 'no'}</b></span>
-          <span class='todo__item'><span>Special note:</span><b>{note || 'no'}</b></span>
+          <span class='todo__item'><span>Time limit:</span><b>{formattedDate}</b></span>
+          <span class='todo__item'><span>Special note:</span><b>{note || def}</b></span>
         </div>
         <div class='todo__actions'>
           <button class='btn-td btn-td--pink' onClick={this.handleToggle}>{completed ? 'Uncomplete' : 'Complete?'}</button>

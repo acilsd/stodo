@@ -22,6 +22,10 @@ class Add extends Component {
     router: PropTypes.object.isRequired
   };
 
+  static defaultProps = {
+    time: moment()
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     const data = {

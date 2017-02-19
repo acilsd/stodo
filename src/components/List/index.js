@@ -28,10 +28,7 @@ class List extends Component {
 
   makeRealContent = (arr) => {
     const { toggleFbStatus, modalDelete, modalEdit, uid, search } = this.props;
-    const box = arr.filter((item) => {
-      return item.name.toLowerCase().indexOf(search) > -1;
-    });
-    return box.map((item) => {
+    return arr.map((item) => {
       return (
         <Item
           key={item.id}
@@ -61,7 +58,8 @@ class List extends Component {
           <TaskManager />
           <LoadingSpinner isLoading={loading}/>
           {
-            filtered ?
+            filtered
+            ?
               <p class='user'>Currently displaying <b>completed</b> tasks only</p>
             : <p class='user'>Displaying <b>all</b> tasks</p>
           }
@@ -76,8 +74,8 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo.todos,
-  completed: state.todo.completed,
+  todo: state.todo.todos.filter((i) => i.name.toLowerCase().indexOf(state.todo.search) > -1),
+  completed: state.todo.completed.filter((i) => i.name.toLowerCase().indexOf(state.todo.search) > -1),
   filtered: state.todo.filtered,
   search: state.todo.search,
   loading: state.todo.loading,

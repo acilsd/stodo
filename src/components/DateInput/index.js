@@ -26,6 +26,11 @@ class DateInput extends Component {
     });
   }
 
+  componentWillMount() {
+    const defaultDate = moment();
+    this.props.setTaskTime(defaultDate);
+  }
+
   render() {
     return (
       <DatePicker
