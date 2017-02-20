@@ -18,7 +18,6 @@ const initialState = {
   time: '',
   search: '',
   todos: [],
-  completed: [],
   errors: {
     noName: true,
     noText: true,
@@ -35,7 +34,7 @@ export default function todoReducer(state = initialState, action) {
   case ADD_TODO:
     return {...state, todos: [...state.todos, action.payload]};
   case FILTER_TODO:
-    return {...state, filtered: action.payload, completed: filterCompleted(state.todos)};
+    return {...state, filtered: action.payload};
   case SEARCH_TODO:
     return {...state, search: action.payload};
   case COMPLETE_TODO:
@@ -54,13 +53,6 @@ export default function todoReducer(state = initialState, action) {
     return state;
   }
 }
-
-const filterCompleted = (state) => {
-  const newState = state.filter((item) => {
-    return item.completed === true;
-  });
-  return newState;
-};
 
 const toggle = (state, data) => {
   const { id, completed } = data;

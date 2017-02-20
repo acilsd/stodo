@@ -6,6 +6,8 @@ import { NavLink } from '../Links';
 import LoadingSpinner from '../LoadingSpinner';
 import TaskManager from '../TaskManager/';
 import * as actions from '../../actions';
+import searchSelector from '../../selectors/search-selector';
+import { getFilteredTasks } from '../../selectors/complete-selector';
 import styles from './style.scss';
 
 class List extends Component {
@@ -74,8 +76,8 @@ class List extends Component {
 }
 
 const mapStateToProps = state => ({
-  todo: state.todo.todos.filter((i) => i.name.toLowerCase().indexOf(state.todo.search) > -1),
-  completed: state.todo.completed.filter((i) => i.name.toLowerCase().indexOf(state.todo.search) > -1),
+  todo: searchSelector(state),
+  completed: getFilteredTasks(state),
   filtered: state.todo.filtered,
   search: state.todo.search,
   loading: state.todo.loading,
