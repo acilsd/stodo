@@ -13,6 +13,20 @@ class ModalDelete extends Component {
     hideAllModals: PropTypes.func.isRequired,
   }
 
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClick);
+  }
+
+  componentWllUnmount() {
+    document.removeEventListener('mousedown', this.handleClick);
+  }
+
+  handleClick = (e) => {
+    if (this.node && !this.node.contains(e.target)) {
+      this.props.hideAllModals();
+    }
+  }
+
   handleDelete = () => {
     this.props.deleteFromFirebase(this.props.uid, this.props.tempTodo.id);
     this.props.hideAllModals();
@@ -22,7 +36,7 @@ class ModalDelete extends Component {
     const { deleting, tempTodo, hideAllModals } = this.props;
     return (
         deleting ? (
-          <div class='modal modal--delete'>
+          <div class='modal modal--delete' ref={(node) => this.node = node}>
             <h3 class='modal__title'>Are you sure you want to delete this task?</h3>
             <p>Task name: <b>{tempTodo.name}</b></p>
             <button class='btn' onClick={hideAllModals}>no</button>
