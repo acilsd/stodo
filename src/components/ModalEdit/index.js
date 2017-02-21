@@ -21,20 +21,6 @@ class ModalEdit extends PureComponent {
     deValidate: PropTypes.func.isRequired,
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick);
-  }
-
-  componentWllUnmount() {
-    document.removeEventListener('mousedown', this.handleClick);
-  }
-
-  handleClick = (e) => {
-    if (this.node && !this.node.contains(e.target)) {
-      this.props.hideAllModals();
-    }
-  }
-
   handleSubmit = (e) => {
     e.preventDefault();
     const toEdit = this.collectValues();
@@ -81,7 +67,7 @@ class ModalEdit extends PureComponent {
 
     return (
         editing ? (
-          <div class='modal-container' ref={(node) => this.node = node}>
+          <div class='modal-container'>
             <form onSubmit={this.handleSubmit} class='modal-edit'>
               <h3 class='modal-title'>Currently editing task: {tempTodo.name}</h3>
               <div class='edit-inputs'>
