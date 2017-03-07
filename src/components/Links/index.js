@@ -9,8 +9,6 @@ export const NavLink = (props) => {
 
 export const MenuLink = ({ label, to, activeOnlyWhenExact }) => (
   <Route path={to} exact={activeOnlyWhenExact} children={({ match }) => (
-    <div>
-      <Link class={match ? 'link link-active' : 'link'} to={to}>{label}</Link>
-    </div>
+    <Link class={match ? 'link link-active' : 'link'} to={to}>{label}</Link>
   )}/>
 );
