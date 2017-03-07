@@ -11,6 +11,14 @@ class NavBar extends Component {
     router: PropTypes.object.isRequired
   }
 
+  static propTypes = {
+    isLoggedIn: PropTypes.bool.isRequired
+  }
+
+  static defauldProps = {
+    isLoggedIn: false
+  }
+
   handleLogOut = (e) => {
     e.preventDefault();
     this.props.logout().then(() => {
@@ -27,10 +35,18 @@ class NavBar extends Component {
           <MenuLink activeOnlyWhenExact={true} to='/add' label="Add new task"/>
           <MenuLink activeOnlyWhenExact={true} to='/thisroutdoesnotexist' label="Error page"/>
         </div>
-        <button onClick={this.handleLogOut} class='lgt'>Logout</button>
+        {
+          this.props.isLoggedIn
+            ? <button onClick={this.handleLogOut} class='lgt'>Logout</button>
+            : null
+        }
       </div>
     );
   }
 }
 
-export default connect(null, actions)(NavBar);
+const mapStateToProps = state => ({
+  isLoggedIn: state.user.loggedIn
+});
+
+export default connect(mapStateToProps, actions)(NavBar);
