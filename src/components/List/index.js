@@ -1,16 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import Item from '../Item';
-import { NavLink } from '../Links';
 import LoadingSpinner from '../LoadingSpinner';
-import TaskManager from '../TaskManager/';
+
 import * as actions from '../../actions';
 import searchSelector from '../../selectors/search-selector';
 import { getFilteredTasks } from '../../selectors/complete-selector';
+
 import styles from './style.scss';
 
-class List extends Component {
+class List extends PureComponent {
   static propTypes = {
     todo: PropTypes.array.isRequired,
     completed: PropTypes.array.isRequired,
@@ -18,9 +18,9 @@ class List extends Component {
     toggleFbStatus: PropTypes.func.isRequired,
     modalDelete: PropTypes.func.isRequired,
     modalEdit: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
     search: PropTypes.string,
     user: PropTypes.object,
+    loading: PropTypes.bool.isRequired
   }
 
   componentDidMount() {
@@ -28,7 +28,7 @@ class List extends Component {
     this.props.fetchTasks(uid);
   }
 
-  makeRealContent = (arr) => {
+  makeRealContent = arr => {
     const { toggleFbStatus, modalDelete, modalEdit, uid, search } = this.props;
     return arr.map((item) => {
       return (
@@ -50,21 +50,10 @@ class List extends Component {
   }
 
   render() {
-    const { todo, completed, filtered, loading, user, uid } = this.props;
+    const { todo, completed, filtered, loading } = this.props;
     return (
         <div class='todo-list'>
-          <div class='todo-header'>
-            <img src={user.img}/>
-            <h1>Greetings, {user.name}</h1>
-          </div>
-          <TaskManager />
           <LoadingSpinner isLoading={loading}/>
-          {
-            filtered
-            ?
-              <p class='user'>Currently displaying <b>completed</b> tasks only</p>
-            : <p class='user'>Displaying <b>all</b> tasks</p>
-          }
           {
             filtered
             ? this.makeRealContent(completed)
@@ -80,9 +69,8 @@ const mapStateToProps = state => ({
   completed: getFilteredTasks(state),
   filtered: state.todo.filtered,
   search: state.todo.search,
-  loading: state.todo.loading,
-  user: state.user.user,
-  uid: state.user.uid
+  uid: state.user.uid,
+  loading: state.todo.loading
 });
 
 export default connect(mapStateToProps, actions)(List);

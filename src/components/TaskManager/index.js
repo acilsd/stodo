@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { NavLink } from '../Links';
+import Heading from '../Heading/';
 import * as actions from '../../actions';
 import styles from './style.scss';
 
@@ -30,9 +31,12 @@ class TaskManager extends Component {
 
 
   render() {
-    let text = this.props.filtered ? 'completed' : 'all';
+    const { filtered, user } = this.props;
+    const text = filtered ? 'completed' : 'all';
+
     return (
       <div class='top'>
+        <Heading text={text} user={user}/>
 
         <form onSubmit={this.handleSubmit} class='search-form'>
 
@@ -55,7 +59,6 @@ class TaskManager extends Component {
           </label>
 
         </form>
-
       </div>
     );
   }
@@ -63,7 +66,8 @@ class TaskManager extends Component {
 
 const mapStateToProps = state => ({
   filtered: state.todo.filtered,
-  isLoggedIn: state.user.loggedIn
+  isLoggedIn: state.user.loggedIn,
+  user: state.user.user
 });
 
 export default connect(mapStateToProps, actions)(TaskManager);
