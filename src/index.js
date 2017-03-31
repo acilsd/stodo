@@ -18,7 +18,7 @@ const render = (Component) => {
     <AppContainer>
       <Router>
         <Provider store={store}>
-          <App />
+          <Component />
         </Provider>
       </Router>
     </AppContainer>,
