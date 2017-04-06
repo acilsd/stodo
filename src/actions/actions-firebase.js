@@ -1,4 +1,3 @@
-/*eslint no-console: off*/
 import * as types from '../constants/';
 import { fbRef } from '../firebase';
 
@@ -63,7 +62,6 @@ export const editInFirebase = (data, uid) => {
 export const deleteFromFirebase = (uid, id) => {
   return (dispatch) => {
     const taskRef = fbRef.child(`users/${uid}/tasks/${id}`);
-    console.log(id);
     return taskRef.remove().then(() => {
       dispatch(deleteTodo(id));
     }), err => console.error(err);
